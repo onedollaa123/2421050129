@@ -1,6 +1,39 @@
-h3{
-    color:#300df2;
-}
-.tieuDe{
-    background-color: rgb(108, 148, 112);
-}
+<style>
+        body{
+            margin: 0;
+        }
+        .Danh-sach-muc{
+            padding: 0;
+            margin: 0;
+            /*bỏ dấu chấm*/
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .Danh-mục{
+            background-color:#198cf0;
+        }
+        .lien-ket{
+            color: White;
+            /*để bỏ gạch chân*/
+            text-decoration-line: none;
+        }
+        .trai{
+            width: 20%;
+            height: 100vh;
+            border-right: 2px solid #198cf0;
+        }
+        .phai{
+            width: 80%;
+            height: 100vh;
+        }
+        .khoi-dang-nhap{
+            background-color: rgb(217, 184, 209);
+            height: 300px;
+            width:100%;
+        }
+        main{ 
+            display: flex;
+        }
+    </style>

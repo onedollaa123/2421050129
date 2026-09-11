@@ -3,9 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>đào tạo</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .Danh-sach-muc{
+            padding: 0;
+            margin: 0;
+            /*bỏ dấu chấm*/
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .Danh-mục{
+            background-color:#198cf0;
+        }
+        .lien-ket{
+            color: White;
+            /*để bỏ gạch chân*/
+            text-decoration-line: none;
+        }
+        .trai{
+            width: 20%;
+            height: 100vh;
+            border-right: 2px solid #198cf0;
+        }
+        .phai{
+            width: 80%;
+            height: 100vh;
+        }
+        .khoi-dang-nhap{
+            height: 300px;
+            width:100%;
+        }
+        .quen-mat-khau{
+            display: flex;
+            justify-content: flex-end;
+        }
+        .quen-mat-khau-lien-ket{
+            text-decoration-line: none;
+        }
+        .danh-sach-tin{
+
+        }
+        .tin{
+            width: 95%;
+            height: 100px;
+            margin: 30px auto;
+            border: 1px solid #198cf0; 
+            border-radius: 10px;
+        }
+        main{ 
+            display: flex;
+        }
+    </style>
 </head>
 <body>
-    
+    <!--Danh mục-->
+    <nav class="Danh-mục">
+        <ul class="Danh-sach-muc">
+            <li class="muc">
+                <a href="#" class="lien-ket">Thục tập, Đồ án</a>
+            </li>
+            <li class="muc"> 
+                <a href="#" class="lien-ket">Thủ tục Một của</a>
+            </li>
+            <li class="muc">
+                <a href="#" class="lien-ket">Một của online</a>
+            </li>
+            <li class="muc">
+                <a href="#" class="lien-ket">Email HUMG</a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="trai">
+            <div class="khoi-dang-nhap">
+            <from action="">
+                <div class="khoi">
+                    <p>Tài Khoản</p>
+                    <input type="text" name="" id>
+                </div>
+                <div class="Khoi">
+                    <p>Mật Khẩu</p>
+                    <input type="password" name="" id>
+                </div>
+                <div class="quen-mat-khau">
+                    <a class="quen-mat-khau-lien-ket" href="">Quên mật khẩu ?</a>
+                </div>
+                <div class="khoi-thong-tin">
+                    <button>Đăng nhập</button><br>
+                    <button>Đăng nhập với Microsoft Office 365</button>
+                </div>
+            </from>
+        </div>
+        </div>
+        <div class="phai">
+            <div class="danh-sach-tin">
+                <div class="tin">
+                    <div class="chuc-nang">
+                        <div class="tieu-de">Tin tức</div>
+                        <div class="xem-tiep"><a class="lien-ket-xem-tiep"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
