@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>đào tạo</title>
+
+    <style>
+        body{
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .Danh-sach-muc{
+            padding: 0;
+            margin: 0;
+            /* bỏ dấu chấm */
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        .Danh-mục{
+            background-color: #198cf0;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+        }
+
+        .lien-ket{
+            color: white;
+            /* để bỏ gạch chân */
+            text-decoration-line: none;
+        }
+
+        main{
+            display: flex;
+            align-items: stretch;
+        }
+
+        .trai{
+            width: 20%;
+            border-right: 2px solid #198cf0;
+        }
+
+        .phai{
+            width: 80%;
+        }
+
+        .khoi-dang-nhap{
+            height: 300px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .khoi p{
+            margin-bottom: 5px;
+        }
+
+        .khoi input{
+            width: 90%;
+            height: 30px;
+        }
+
+        .quen-mat-khau{
+            display: flex;
+            justify-content: flex-end;
+            width: 95%;
+            margin-top: 10px;
+        }
+
+        .quen-mat-khau-lien-ket{
+            text-decoration-line: none;
+            color: #198cf0;
+        }
+
+        .khoi-thong-tin{
+            margin-top: 15px;
+        }
+
+        .khoi-thong-tin button{
+            width: 95%;
+            height: 40px;
+            margin-bottom: 8px;
+            background-color: #198cf0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .danh-sach-tin{
+            width: 100%;
+        }
+
+        .tin{
+            width: 95%;
+            min-height: 250px;
+            margin: 20px auto;
+            border: 1px solid #198cf0;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .chuc-nang{
+            height: 45px;
+            border-bottom: 1px solid #198cf0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+
+        .tieu-de{
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .xem-tiep a{
+            color: #198cf0;
+            text-decoration-line: none;
+        }
+        .tin-nho{
+            width: 23%;
+        }
+        .noi-dung-tin{
+            display: flex;
+            gap: 20px;
+        }
+        img{
+            width: 100%;
+            border-radius: 10px;
+            height: 20vh;
+            object-fit: cover;
+        }
+        .ngay-tin{
+            text-align: right;
+        }
+        .noi-dung-thong-bao{
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.anh-thong-bao{
+    width: 23%;
+}
+
+.anh-thong-bao img{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.ds-thong-bao{
+    width: 50%;
+}
+
+.dong-thong-bao{
+    padding: 10px 0;
+}
+.noi-dung-huong-dan{
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.ds-huong-dan{
+    width: 50%;
+}
+.dong-huong-dan{
+    padding: 10px 0;
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Danh mục -->
+    <nav class="Danh-mục">
+        <ul class="Danh-sach-muc">
+
+            <li class="muc">
+                <a href="#" class="lien-ket">Thực tập, Đồ án</a>
+            </li>
+
+            <li class="muc">
+                <a href="#" class="lien-ket">Thủ tục Một cửa</a>
+            </li>
+
+            <li class="muc">
+                <a href="#" class="lien-ket">Một cửa online</a>
+            </li>
+
+            <li class="muc">
+                <a href="#" class="lien-ket">Email HUMG</a>
+            </li>
+
+        </ul>
+    </nav>
+
+
+    <main>
+
+        <!-- Phần bên trái -->
+        <div class="trai">
+
+            <div class="khoi-dang-nhap">
+
+                <form action="">
+
+                    <div class="khoi">
+                        <p>Tài Khoản</p>
+                        <input type="text" name="" id="">
+                    </div>
+
+                    <div class="khoi">
+                        <p>Mật Khẩu</p>
+                        <input type="password" name="" id="">
+                    </div>
+
+                    <div class="quen-mat-khau">
+                        <a class="quen-mat-khau-lien-ket" href="">
+                            Quên mật khẩu ?
+                        </a>
+                    </div>
+
+                    <div class="khoi-thong-tin">
+                        <button>Đăng nhập</button>
+                        <br>
+                        <button>Đăng nhập với Microsoft Office 365</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- Phần bên phải -->
+        <div class="phai">
+
+            <div class="danh-sach-tin">
+
+                <div class="tin">
+
+                    <div class="chuc-nang">
+
+                        <div class="tieu-de">
+                            📢 Tin tức
+                        </div>
+
+                        <div class="xem-tiep">
+                            <a href="#">
+                                Xem tiếp →
+                            </a>
+                        </div>
+                    </div>
+                    <div class="noi-dung-tin">
+                            <div class="tin-nho">
+                                <div class="anh-tin">
+                                    <img src="../anh/image1.jpeg">
+                                </div>
+                                <div class="ngay-tin">
+                                    05/05/2026
+                                </div>
+                                <div class="tieu-de-tin">
+                                    Về việc đăng ký khối lượng học tập học kỳ phụ năm học 2025-2026
+                                </div>
+                            </div>
+                            
+                            <div class="tin-nho">
+                                <div class="anh-tin">
+                                    <img src="../anh/image1.jpeg">
+                                </div>
+                                <div class="ngay-tin">
+                                    05/05/2026
+                                </div>
+                                <div class="tieu-de-tin">
+                                    Về việc nghỉ học
+                                </div>
+                            </div>
+                            <div class="tin-nho">
+                                <div class="anh-tin">
+                                    <img src="../anh/image1.jpeg">
+                                </div>
+                                <div class="ngay-tin">
+                                    24/09/2024
+                                </div>
+                                <div class="tieu-de-tin">
+                                    Trường Đại học Mỏ – Địa chất đạt chứng nhận kiểm định chất lượng cơ sở giáo dục (chu kỳ 2)
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            
+
+                        <!-- KHUNG THÔNG BÁO -->
+        <div class="tin">
+
+         <div class="chuc-nang">
+                <div class="tieu-de">📢 Thông báo</div>
+
+        <div class="xem-tiep">
+            <a href="#">Xem tiếp →</a>
+        </div>
+        </div>
+
+    <div class="noi-dung-thong-bao">
+
+        <!-- Ảnh 1 -->
+        <div class="anh-thong-bao">
+            <img src="../anh/image1.jpeg">
+            <div class="tieu-de-thong-bao">Về việc ghép lớp và mở lớp học kì 1 năm học 2026-2027</div>
+        </div>
+
+        <!-- Ảnh 2 -->
+        <div class="anh-thong-bao">
+            <img src="../anh/image1.jpeg">
+                        <div class="tieu-de-thong-bao">Về việc ghép lớp và mở lớp học kì 1 năm học 2026-2027</div>
+        </div>
+
+        <!-- 3 dòng thông báo -->
+        <div class="ds-thong-bao">
+
+            <div class="dong-thong-bao">
+                <div class="ngay-tin">
+                    <span>03/05/2026</span>
+                </div>
+                <a href="#">
+                    Thông báo về việc thực tập tốt nghiệp/doanh nghiệp và Đồ án/khóa luận tốt nghiệp của sinh viên đợt 1A năm học 2026-2027
+                </a>
+            </div>
+
+            <div class="dong-thong-bao">
+                <div class="ngay-tin">
+                    <span>03/05/2026</span>
+                </div>
+                <a href="#">
+                    Thông báo về việc nghỉ học
+                </a>
+            </div>
+
+            <div class="dong-thong-bao">
+                <div class="ngay-tin">
+                    <span>03/05/2026</span>
+                </div>
+                <a href="#">
+                    Thông báo lịch thi học kỳ
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+                    <!-- Hướng dẫn -->
+<div class="tin">
+
+    <div class="chuc-nang">
+        <div class="tieu-de">
+            📢 Thông báo
+        </div>
+
+        <div class="xem-tiep">
+            <a href="#">Xem tiếp →</a>
+        </div>
+    </div>
+
+    <div class="noi-dung-huong-dan">
+
+        <!-- Ảnh 1 -->
+        <div class="anh-thong-bao">
+            <img src="../anh/image1.jpeg">
+            <div class="tieu-de-thong-bao">Về việc ghép lớp và mở lớp học kì 1 năm học 2026-2027</div>
+        </div>
+
+        <!-- Ảnh 2 -->
+        <div class="anh-thong-bao">
+            <img src="../anh/image1.jpeg">
+                        <div class="tieu-de-thong-bao">Về việc ghép lớp và mở lớp học kì 1 năm học 2026-2027</div>
+        </div>
+
+        <!-- 3 dòng thông báo -->
+        <div class="ds-huong-dan">
+
+            <div class="dong-huong-dan">
+                <div class="ngay-tin">
+                    <span>03/05/2026</span>
+                </div>
+                <a href="#">
+                    Thông báo về việc thực tập tốt nghiệp/doanh nghiệp và Đồ án/khóa luận tốt nghiệp của sinh viên đợt 1A năm học 2026-2027
+                </a>
+            </div>
+
+            <div class="dong-huong-dan">
+                <div class="ngay-tin">
+                    <span>03/05/2026</span>
+                </div>
+                <a href="#">
+                    Thông báo về việc nghỉ học
+                </a>
+            </div>
+
+            <div class="dong-huong-dan">
+                <div class="ngay-tin">
+                    <span>03/05/2026</span>
+                </div>
+                <a href="#">
+                    Thông báo lịch thi học kỳ
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+        <!-- Hướng dẫn -->
+            <div class="tin">
+                <div class="chuc-nang">
+                    <div class="tieu-de">📌 Cài đặt App mobile</div>
+
+                    <div class="xem-tiep">
+                        <a href="#">Xem tiếp→</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </main>
+
+</body>
+</html>
