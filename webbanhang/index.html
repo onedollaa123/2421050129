@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhạc Spotify</title>
+
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+}
+
+/* 1. Header trên cùng */
+.danh-muc {
+    background-color: #000000;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.danh-muc-trai {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo {
+    width: 100px;
+    object-fit: contain;
+    margin-left: 8px;
+}
+
+.nut-home {
+    width: 48px;
+    height: 48px;
+    background-color: #1f1f1f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.danh-muc-giua {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.thanh-tim-kiem {
+    display: flex;
+    align-items: center;
+    background-color: #1f1f1f;
+    max-width: 600px;
+    width: 100%;
+    height: 48px;
+    padding: 0 16px;
+    border-radius: 50px;
+}
+
+.thanh-tim-kiem span {
+    color: #b3b3b3;
+    font-size: 18px;
+}
+
+.thanh-tim-kiem input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 14px;
+    padding-left: 12px;
+}
+
+.thanh-tim-kiem input::placeholder {
+    color: #b3b3b3;
+}
+
+.danh-muc-phai {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-right: 8px;
+}
+
+.danh-muc-phai a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.danh-muc-phai a:hover {
+    color: #ffffff;
+}
+
+.vach-ngan {
+    color: #fdfdfd;
+}
+
+.nut-dang-nhap {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* 2. Phần thân (Sidebar + Content) */
+.phan-than {
+    display: flex;
+    flex: 1;
+    gap: 8px;
+    overflow: hidden;
+}
+
+/* Sidebar bên trái */
+.tieu-de {
+    width: 280px;
+    height: 100%;
+    background-color: #121212;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.thu-vien-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #b3b3b3;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 4px 8px;
+}
+
+.thu-vien-header:hover {
+    color: #ffffff;
+}
+
+.nut-cong {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.nut-cong:hover {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+.the-thong-bao {
+    background-color: #242424;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.the-thong-bao h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.the-thong-bao p {
+    font-size: 12px;
+    color: #ffffff;
+    line-height: 1.4;
+}
+
+.nut-trang {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.nut-trang:hover {
+    transform: scale(1.03);
+}
+
+.lien-ket-phu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 12px;
+    margin-top: auto;
+    padding: 16px 8px 8px 8px;
+}
+
+.lien-ket-phu a {
+    color: #b3b3b3;
+    font-size: 11px;
+    text-decoration: none;
+}
+
+.lien-ket-phu a:hover {
+    text-decoration: underline;
+}
+
+.nut-ngon-ngu {
+    padding: 0 8px;
+}
+
+.nut-tieng-viet {
+    background: transparent;
+    border: 1px solid #727272;
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.nut-tieng-viet:hover {
+    border-color: #ffffff;
+}
+
+/* Nội dung chính bên phải */
+.noi-dung-chinh {
+    flex: 1;
+    height: 100%;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    overflow-y: auto;
+    padding: 24px;
+}
+
+.ten-the-loai {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.ten-the-loai h2 {
+    font-size: 20px;
+}
+
+.ten-the-loai a {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.danh-sach-card {
+    display: flex;
+    gap: 16px;
+}
+
+.card {
+    width: 160px;
+    background-color: #181818;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: #282828;
+}
+
+.card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.card-nghe-si img {
+    border-radius: 50%;
+}
+
+.ten-bai-hat, .ten-nghe-si {
+    font-weight: bold;
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.mo-ta {
+    color: #b3b3b3;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* 3. Footer Banner dải màu dưới cùng */
+.danh-sach {
+    width: 100%;
+    height: 65px;
+    background: linear-gradient(90deg, #af2896, #509bf5);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+.noi-dung-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tieu-de-banner {
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mo-ta-banner {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.nut-dang-ky-banner {
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.nut-dang-ky-banner:hover {
+    transform: scale(1.03);
+}
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <nav class="danh-muc">
+        <div class="danh-muc-trai">
+            <img class="logo" src="../anh/logo.svg"></img>
+            <div class="nut-home">🏠</div>
+        </div>
+
+        <div class="danh-muc-giua">
+            <div class="thanh-tim-kiem">
+                <span>🔍</span>
+                <input type="text" placeholder="Bạn muốn phát nội dung gì?">
+            </div>
+        </div>
+
+        <div class="danh-muc-phai">
+            <a href="#">Premium</a>
+            <a href="#">Hỗ trợ</a>
+            <a href="#">Tải xuống</a>
+            <span class="vach-ngan">|</span>
+            <a href="#">Đăng ký</a>
+            <button class="nut-dang-nhap">Đăng nhập</button>
+        </div>
+    </nav>
+
+    <!-- Thân -->
+    <div class="phan-than">
+        <!-- Sidebar Cột trái -->
+        <div class="tieu-de">
+            <div class="thu-vien-header">
+                <div class="thu-vien-tieu-de">Thư viện</div>
+                <div class="nut-cong">+</div>
+            </div>
+
+            <div class="the-thong-bao">
+                <h3>Tạo danh sách phát đầu tiên của bạn</h3>
+                <p>Rất dễ! Chúng tôi sẽ giúp bạn</p>
+                <button class="nut-trang">Tạo danh sách phát</button>
+            </div>
+
+            <div class="the-thong-bao">
+                <h3>Hãy cùng tìm và theo dõi một số podcast</h3>
+                <p>Chúng tôi sẽ cập nhật cho bạn thông tin về các tập mới</p>
+                <button class="nut-trang">Duyệt xem podcast</button>
+            </div>
+
+            <div class="lien-ket-phu">
+                <a href="#">Pháp lý</a>
+                <a href="#">Trung tâm an toàn và quyền riêng tư</a>
+                <a href="#">Chính sách quyền riêng tư</a>
+                <a href="#">Cookie</a>
+                <a href="#">Giới thiệu Quảng cáo</a>
+                <a href="#">Hỗ trợ tiếp cận</a>
+                <a href="#">Cookie</a>
+            </div>
+
+            <div class="nut-ngon-ngu">
+                <button class="nut-tieng-viet">🌐 Tiếng Việt</button>
+            </div>
+        </div> 
+
+        <!-- Nội dung Cột phải -->
+        <div class="noi-dung-chinh">
+
+            <div class="the-loai">
+                <div class="ten-the-loai">
+                    <h2>Những bài hát thịnh hành</h2>
+                    <a href="#">Hiện tất cả</a>
+                </div>
+                <div class="danh-sach-card">
+                    <div class="card">
+                        <img src="../anh/b2.jpeg"></img>
+                        <div class="ten-bai-hat">Chờ chút...</div>
+                        <div class="mo-ta">TINH HÀ "SAY HI", CONGB</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="the-loai">
+                <div class="ten-the-loai">
+                    <h2>Nghệ sĩ phổ biến</h2>
+                    <a href="#">Hiện tất cả</a>
+                </div>
+                <div class="danh-sach-card">
+                    <div class="card card-nghe-si">
+                        <img src="../anh/b1.jpeg"></img>
+                        <div class="ten-nghe-si">Sơn Tùng M-TP</div>
+                        <div class="mo-ta">Nghệ sĩ</div>
+                    </div>
+                </div>
+            </div>
+
+        </div> 
+    </div>
+
+    <!-- Footer Banner -->
+    <div class="danh-sach">
+        <div class="noi-dung-banner">
+            <div class="tieu-de-banner">Xem trước Spotify</div>
+            <div class="mo-ta-banner">Đăng ký để nghe không giới hạn các bài hát và podcast với quảng cáo không thường xuyên. Không cần thẻ tín dụng.</div>
+        </div>
+        <button class="nut-dang-ky-banner">Đăng ký miễn phí</button>
+    </div>
+
+</body>
+</html>

@@ -44,21 +44,58 @@ header{
         text-decoration: none;
         color: #dbdbdd;
 }
+ 
     .others{
     flex: 1;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     margin: 0;
-    padding: 0 20px 0 0;
+    padding: 0 50px 0 0;
+    list-style: none;
+}
+.others img {
+    width: 30px;
+    height: 30px;
+}
+        
+        
+    .nut-mua-goi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 40px;
+
+    background: linear-gradient(100deg, #ed0000, #ff7415);
+
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+
+    text-decoration: none;
+
+    border-radius: 20px;
+    border: 2px solid #ff5b27;
+
 }
 
-    .tieu-de{
-        background-color:blue;
-        width: 50%;
-        height: 50vh;
-        margin: 30px auto;
+
+    .tieu-de {
+    width: 50%;
+    height: 60vh;
+    margin: 45px auto;
+
+    overflow: hidden;
+    border-radius: 15px;
+}
+.tieu-de img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
 }
     .danh-sach{
         width: 95%;
@@ -84,18 +121,36 @@ header{
                 <li class="muc"><a class="lien-ket-muc" href="">Truyền Hình</a></li>
                 <li class="muc"><a class="lien-ket-muc" href="">Cổng Nội Dung</a></li>
                 <li class="muc"><a class="lien-ket-muc" href="">Xem Thêm</a></li>
+                
             </ul>
             <ul class="others">
-                <img src="../anhvtv/timkiem.svg">
-                <img src="../anhvtv/tb.svg">
-                <img src="../anhvtv/mua_goi">
-                <img src="../anhvtv/nguoi.svg">
+                <a href="#"><img src="../anhvtv/timkiem.svg"></a>
+                <a href="#"><img src="../anhvtv/tb.svg"></a>
+                <li><a class="nut-mua-goi" href="#">Mua gói</a></li>
+                <a href="#"><img src="../anhvtv/nguoi.svg"></a>
             </ul>
-
-
     </nav>
-   <div class="tieu-de"></div>
-   <div class="danh-sach"></div>
+    <!--banner-->
+   <div class="tieu-de">
+        <ul class="danh-sach-banner">
+            <img class="banner" src="../anhvtv/b1.webp">
+                <button class="nut-trai" onclick="anhTruoc()">‹</button>
+                <button class="nut-phai" onclick="anhSau()">›</button>
+        </ul>
+   </div>
+    <!-- danh sach vtv-->
+   <div class="danh-sach">
+        <ul class="vtv">
+            <a href="#"><img src="../anhvtv/v1.webp"></a>
+            <a href="#"><img src="../anhvtv/v2.webp"></a>
+            <a href="#"><img src="../anhvtv/v3.webp"></a>
+            <a href="#"><img src="../anhvtv/v4.webp"></a>
+            <a href="#"><img src="../anhvtv/v5.webp"></a>
+            <a href="#"><img src="../anhvtv/v6.webp"></a>
+
+
+        </ul>
+   </div>
      <div class="danh-sach-kenh">
         <div class="danh-sach-kenh-1">1</div>
         <div class="danh-sach-kenh-1">2</div>
