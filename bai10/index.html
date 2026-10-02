@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <script>
+        document.writeln("xin chào <br> ")
+    </script>
+    <script src="script.js">
+        </script>
+    <script>
+        var name ="Huy Châu"
+
+        document.writeln(name);
+
+        name = "Huy Châu"
+
+        document.writeln(name);
+
+        var year = 2026;
+
+        document.writeln(year);
+
+        var a = 10;
+        var b = 10;
+        var kq=0;
+        kq = a+b;
+        document.writeln(kq);
+
+        var a = 10;
+        var b = 10;
+        var kq=0;
+        kq = a-b;
+        document.writeln(kq);
+
+        var a = 10;
+        var b = 10;
+        var kq=0;
+        kq = a*b;
+        document.writeln(kq);
+
+        var a = 10;
+        var b = 10;
+        var kq=0;
+        kq = a/b;
+        document.writeln(kq);
+        var a = 10;
+        var b = 10;
+        var kq=0;
+        kq = a%b;
+        document.writeln(kq);
+
+        //++
+        document.writeln(a++);
+        //++
+        document.writeln(++a);
+        //--
+        document.writeln(a--);
+        //--
+        document.writeln(--a);
+
+        a+=b;
+        document.writeln(a);
+        a-=b;
+        document.writeln(a);
+
+        var ho = "do";
+        document.writeln( ho + name );
+        document.writeln("br "+ name.length);
+        document.writeln(typeof(name));
+
+        var hovaten ="Nguyễn Huy Châu";
+        document.writeln("br "+ hovaten.includes("C"))
+        document.writeln("br "+ hovaten.startsWith("C"))
+        //thay thế kí tự
+        document.writeln("br "+ hovaten.replace("C","D"))
+        document.writeln("br "+ hovaten.toUpperCase())
+        document.writeln("br "+ hovaten.toLocaleLowerCase())
+
+        var homNay = new Date();
+         document.writeln("<br>");
+         document.writeln(homNay);
+        
+        var ngay = new Date("02/14/2006");
+        document.writeln("<br>");
+         document.writeln(ngay);
+
+         var namNay = homNay.getFullYear();
+         document.writeln("<br>");
+         document.writeln(namNay);
+
+         var namNay = homNay.getDay();
+         document.writeln("<br>");
+         document.writeln(namNay);
+
+         var nNay = homNay.getDate();
+         document.writeln("<br>");
+         document.writeln(namNay);
+
+        document.writeln("<br>");
+         document.writeln("hom nay la ngay: "+ nNay);
+
+
+        var mang = [1,2,3,4,5];
+        document.writeln("<br>");
+        document.writeln(mang[4]);
+        document.writeln("<br>");
+        document.writeln(mang.length);
+        var b =["chau", "an"];
+        document.writeln("<br>");
+        document.writeln(b[1]);
+
+        var s= mang.concat(mang,b);
+         document.writeln("<br>");
+        document.writeln(s);
+
+        var TTSV = {
+            ten : "Nguyễn Huy Châu",
+            namSinh: 2006,
+            queQuan: {
+                thanhPho: "Hà Nội",
+                phuong: "Nam Từ Liêm"
+            }
+        };
+        var thongtin1 =[
+            {
+                Ten: "Huy Châu",
+                namsinh:2006,
+            },
+            {
+                Ten: "Huy Quang",
+                namsinh:2006,
+            }
+        ]
+
+        //==
+        //===
+        var i = 5;
+        var j =10;
+        document.writeln("<br>");
+         document.writeln(i!==j);
+         document.writeln("<br>");
+         document.writeln(i==j);
+
+        //if-else
+        if(i=5){
+            document.writeln("<br>");
+         document.writeln("binggo");
+        }
+
+
+
+        if(i%2==0){
+            document.writeln("<br>");
+         document.writeln("chẵn");
+        }
+        else{
+            document.writeln("<br>");
+         document.writeln("lẻ");
+         document.writeln("<br>");
+        }
+
+
+        let mon = 2;
+
+switch (mon) {
+    case 1:
+        document.writeln("Phở");
+        break;
+
+    case 2:
+        document.writeln("Bún chả");
+        break;
+
+    case 3:
+        document.writeln("Cơm");
+        break;
+
+    default:
+        document.writeln("Không có món này");
+}
+
+for (var i = 1; i <= 5; i++) {
+    document.writeln("<br>");
+    document.writeln(i);
+}
+
+var tenn = [1,2,3,4,"An", "Bình", "Huy", "Nam"];
+
+for (var j = 0; j < tenn.length; j++) {
+    if (typeof tenn[j] === "string") {
+        document.writeln(tenn[j] + "<br>");
+    }
+}
+
+let matKhau = "";
+
+while (matKhau !== "1234") {
+    matKhau = prompt("Nhập mật khẩu:");
+}
+
+document.writeln("Đăng nhập thành công");
+
+let luaChon;
+
+do {
+    luaChon = prompt("1. thoat\n2. xem");
+
+    if (luaChon == 1) {
+        document.writeln("Bạn đang xem");
+    }
+
+} while (luaChon != 2);
+
+    //popup boxes
+    alert("xin chào hứa công tử")
+
+var r = confirm("press a button")
+if (r==true){
+    document.writeln("ok");
+}
+else{
+    document.writeln("cancel!");
+}
+
+var o= prompt("mời hứa công tử nhập thông tin: ","ở dây");
+document.writeln(o);
+
+
+    function sayHello(){
+        document.writeln("<br>ok");
+    }
+    sayHello();
+
+function tinhTong(a, b) {
+    document.writeln("Tổng = " + (a + b));
+}
+
+var s2 = Number(prompt("Nhập số thứ nhất:"));
+var s1 = Number(prompt("Nhập số thứ hai:"));
+  document.writeln("Tổng = " + (a + b));
+tinhTong(s1,s2);
+
+
+    </script>
+</body>
+</html> 
