@@ -242,9 +242,21 @@ function tinhTong(a, b) {
 
 var s2 = Number(prompt("Nhập số thứ nhất:"));
 var s1 = Number(prompt("Nhập số thứ hai:"));
-  document.writeln("Tổng = " + (a + b));
 tinhTong(s1,s2);
 
+//viet hàm tính điểm chữ ở 3 đầu điểm (A,B,C)
+//tong=a*0,6+b*0,3+c*0,1
+function tinh(a, b, c) {
+    var tong = a * 0.6 + b * 0.3 + c * 0.1;
+
+    console.log("Tổng điểm: " + tong);
+}
+
+var a = Number(prompt("Nhập điểm A:"));
+var b = Number(prompt("Nhập điểm B:"));
+var c = Number(prompt("Nhập điểm C:"));
+
+tinh(a, b, c);
 
     </script>
 </body>

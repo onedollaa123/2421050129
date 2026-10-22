@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đề Thi Trắc Nghiệm - Khoa Học Dữ Liệu (Mã đề 357)</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --wrong-color: #e74c3c;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 1.2rem;
+            margin: 5px 0;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        .header h2 {
+            font-size: 1.6rem;
+            margin: 10px 0;
+            color: var(--primary-color);
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .question-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .question-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        pre {
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            font-size: 0.95rem;
+            overflow-x: auto;
+            margin: 10px 0 15px 0;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-item {
+            margin-bottom: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-label:hover {
+            background-color: #f0f7ff;
+            border-color: #b3d7ff;
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 12px;
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        /* Styling trạng thái Đúng / Sai */
+        .option-label.correct {
+            background-color: #d4edda !important;
+            border-color: #28a745 !important;
+            color: #155724 !important;
+            font-weight: bold;
+        }
+
+        .option-label.wrong {
+            background-color: #f8d7da !important;
+            border-color: #dc3545 !important;
+            color: #721c24 !important;
+        }
+
+        .feedback {
+            margin-top: 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            display: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .feedback.correct {
+            color: #155724;
+            background-color: #d4edda;
+            display: block;
+        }
+
+        .feedback.wrong {
+            color: #721c24;
+            background-color: #f8d7da;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Bộ Giáo Dục và Đào Tạo — Trường Đại Học Mỏ - Địa Chất</h1>
+        <h2>ĐỀ THI KẾT THÚC HỌC PHẦN (LÀM BÀI TRỰC TIẾP)</h2>
+        <p><strong>Môn: Khoa học dữ liệu</strong> | Mã học phần: 7080509</p>
+        <div class="meta-info">
+            <span>Thời gian làm bài: 40 phút (45 câu)</span>
+            <span>Mã đề thi: 357</span>
+        </div>
+    </div>
+
+    <form id="quizForm">
+        <!-- Câu 1 -->
+        <div class="question-card" id="q1_card">
+            <div class="question-title">Câu 1: Kết quả xuất ra màn hình của đoạn chương trình sau phụ thuộc vào giá trị nhập x như thế nào?</div>
+            <pre>x = int(input())
+if (x % 2 == 0):
+    print('Even')
+else:
+    print('Odd')</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q1" value="A" onchange="checkAnswer(this)"> A. In ra "Even" nếu x là số chẵn</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q1" value="B" onchange="checkAnswer(this)"> B. Luôn in ra màn hình "Odd"</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q1" value="C" onchange="checkAnswer(this)"> C. In ra "Odd" nếu x là số chẵn</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q1" value="D" onchange="checkAnswer(this)"> D. Luôn in ra màn hình "Even"</label></div>
+            </div>
+            <div class="feedback" id="q1_feedback"></div>
+        </div>
+
+        <!-- Câu 2 -->
+        <div class="question-card" id="q2_card">
+            <div class="question-title">Câu 2: Phát biểu nào sau đây là chính xác khi nói về Hàm trong Python?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q2" value="A" onchange="checkAnswer(this)"> A. Không thể tự tạo các hàm của riêng người viết chương trình.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q2" value="B" onchange="checkAnswer(this)"> B. Tất cả các đáp án đều đúng.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q2" value="C" onchange="checkAnswer(this)"> C. Sử dụng hàm không có tác động tích cực gì đến các module trong chương trình.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q2" value="D" onchange="checkAnswer(this)"> D. Hàm có thể được tái sử dụng trong chương trình.</label></div>
+            </div>
+            <div class="feedback" id="q2_feedback"></div>
+        </div>
+
+        <!-- Câu 3 -->
+        <div class="question-card" id="q3_card">
+            <div class="question-title">Câu 3: Cho biết kết quả xuất ra màn hình của đoạn chương trình sau:</div>
+            <pre>def cong_so(so1, so2):
+    return so1 + so2
+
+print(cong_so(55))</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q3" value="A" onchange="checkAnswer(this)"> A. Lỗi khi chạy chương trình</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q3" value="B" onchange="checkAnswer(this)"> B. 30</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q3" value="C" onchange="checkAnswer(this)"> C. 75</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q3" value="D" onchange="checkAnswer(this)"> D. 55</label></div>
+            </div>
+            <div class="feedback" id="q3_feedback"></div>
+        </div>
+
+        <!-- Câu 4 -->
+        <div class="question-card" id="q4_card">
+            <div class="question-title">Câu 4: Để vẽ biểu đồ hình cột với dữ liệu (x, y) và cột có màu đỏ trong thư viện Matplotlib.pyplot sử dụng lệnh nào dưới đây?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q4" value="A" onchange="checkAnswer(this)"> A. bar(x, y, marker = 'red')</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q4" value="B" onchange="checkAnswer(this)"> B. plot (x, y, color= 'r')</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q4" value="C" onchange="checkAnswer(this)"> C. scatter(x, y, color= 'r')</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q4" value="D" onchange="checkAnswer(this)"> D. bar(x, y, color = 'r')</label></div>
+            </div>
+            <div class="feedback" id="q4_feedback"></div>
+        </div>
+
+        <!-- Câu 5 -->
+        <div class="question-card" id="q5_card">
+            <div class="question-title">Câu 5: Trong quy trình của một dự án về khoa học dữ liệu, bước nào chiếm nhiều thời gian và nguồn lực nhất?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q5" value="A" onchange="checkAnswer(this)"> A. Phân tích và khám phá dữ liệu (Data Exploration and Analysis)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q5" value="B" onchange="checkAnswer(this)"> B. Thu thập tất cả dữ liệu từ các nguồn khác nhau liên quan đến dự án (Data collection)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q5" value="C" onchange="checkAnswer(this)"> C. Chuẩn bị dữ liệu (Data Preparation)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q5" value="D" onchange="checkAnswer(this)"> D. Thiết lập mục tiêu của dự án (Setting the research goal)</label></div>
+            </div>
+            <div class="feedback" id="q5_feedback"></div>
+        </div>
+
+        <!-- Câu 6 -->
+        <div class="question-card" id="q6_card">
+            <div class="question-title">Câu 6: Lệnh nào dùng để lấy dữ liệu đầu vào từ người dùng?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q6" value="A" onchange="checkAnswer(this)"> A. get()</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q6" value="B" onchange="checkAnswer(this)"> B. input()</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q6" value="C" onchange="checkAnswer(this)"> C. cin</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q6" value="D" onchange="checkAnswer(this)"> D. scanf()</label></div>
+            </div>
+            <div class="feedback" id="q6_feedback"></div>
+        </div>
+
+        <!-- Câu 7 -->
+        <div class="question-card" id="q7_card">
+            <div class="question-title">Câu 7: Khẳng định nào là đúng về chú thích trong Python?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q7" value="A" onchange="checkAnswer(this)"> A. Trình thông dịch Python sẽ bỏ qua những chú thích.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q7" value="B" onchange="checkAnswer(this)"> B. Tất cả các đáp án trên.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q7" value="C" onchange="checkAnswer(this)"> C. Có thể viết chú thích trên cùng một dòng với lệnh/biểu thức hoặc viết trên nhiều dòng mà không vấn đề gì cả.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q7" value="D" onchange="checkAnswer(this)"> D. Chú thích giúp cho các lập trình viên hiểu rõ hơn về chương trình.</label></div>
+            </div>
+            <div class="feedback" id="q7_feedback"></div>
+        </div>
+
+        <!-- Câu 8 -->
+        <div class="question-card" id="q8_card">
+            <div class="question-title">Câu 8: ..... Đây là dòng chú thích!: kí hiệu nào còn thiếu trong dấu ... để biến nó trở thành một dòng chú thích?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q8" value="A" onchange="checkAnswer(this)"> A. @</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q8" value="B" onchange="checkAnswer(this)"> B. #</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q8" value="C" onchange="checkAnswer(this)"> C. %</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q8" value="D" onchange="checkAnswer(this)"> D. &</label></div>
+            </div>
+            <div class="feedback" id="q8_feedback"></div>
+        </div>
+
+        <!-- Câu 9 -->
+        <div class="question-card" id="q9_card">
+            <div class="question-title">Câu 9: ............. là thuật ngữ sử dụng cho tập hợp các dữ liệu quá lớn và phức tạp khiến cho việc xử lý các dữ liệu này trở nên khó khăn khi sử dụng các kỹ thuật quản lý dữ liệu truyền thống</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q9" value="A" onchange="checkAnswer(this)"> A. Dữ liệu</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q9" value="B" onchange="checkAnswer(this)"> B. Thông tin</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q9" value="C" onchange="checkAnswer(this)"> C. Dữ liệu lớn</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q9" value="D" onchange="checkAnswer(this)"> D. Tri thức</label></div>
+            </div>
+            <div class="feedback" id="q9_feedback"></div>
+        </div>
+
+        <!-- Câu 10 -->
+        <div class="question-card" id="q10_card">
+            <div class="question-title">Câu 10: Theo dõi đoạn mã dưới đây và chọn đáp án đúng nhất?</div>
+            <pre>a = [1, 4, 20, 2, 5]
+x = a[0]
+for i in a:
+    if i > x:
+        x = i
+print(x)</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q10" value="A" onchange="checkAnswer(this)"> A. x là giá trị nhỏ nhất của danh sách a.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q10" value="B" onchange="checkAnswer(this)"> B. x là giá trị trung bình của danh sách a.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q10" value="C" onchange="checkAnswer(this)"> C. x là tổng giá trị các số trong danh sách a.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q10" value="D" onchange="checkAnswer(this)"> D. x là giá trị lớn nhất của danh sách a.</label></div>
+            </div>
+            <div class="feedback" id="q10_feedback"></div>
+        </div>
+
+        <!-- Câu 11 -->
+        <div class="question-card" id="q11_card">
+            <div class="question-title">Câu 11: Để hiển thị 10 dòng dữ liệu đầu tiên trong một DataFrame data_df, đáp án nào dưới đây là đúng nhất?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q11" value="A" onchange="checkAnswer(this)"> A. data_df.tail(10)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q11" value="B" onchange="checkAnswer(this)"> B. data_df.max[0:10]</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q11" value="C" onchange="checkAnswer(this)"> C. data_df.sum(10)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q11" value="D" onchange="checkAnswer(this)"> D. data_df.head(10)</label></div>
+            </div>
+            <div class="feedback" id="q11_feedback"></div>
+        </div>
+
+        <!-- Câu 12 -->
+        <div class="question-card" id="q12_card">
+            <div class="question-title">Câu 12: Hàm type() có tác dụng gì?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q12" value="A" onchange="checkAnswer(this)"> A. In đoạn text ra màn hình</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q12" value="B" onchange="checkAnswer(this)"> B. Tất cả các phương án</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q12" value="C" onchange="checkAnswer(this)"> C. Nhập dữ liệu từ bàn phím</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q12" value="D" onchange="checkAnswer(this)"> D. Trả về kiểu của đối tượng được truyền dưới dạng tham số</label></div>
+            </div>
+            <div class="feedback" id="q12_feedback"></div>
+        </div>
+
+        <!-- Câu 13 -->
+        <div class="question-card" id="q13_card">
+            <div class="question-title">Câu 13: Để sử dụng thư viện phân tích và xử lý dữ liệu pandas, lệnh gọi nào sau đây là đúng?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q13" value="A" onchange="checkAnswer(this)"> A. import pandas-pd</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q13" value="B" onchange="checkAnswer(this)"> B. input pandas as pd</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q13" value="C" onchange="checkAnswer(this)"> C. from pandas as pd</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q13" value="D" onchange="checkAnswer(this)"> D. import pandas as pd</label></div>
+            </div>
+            <div class="feedback" id="q13_feedback"></div>
+        </div>
+
+        <!-- Câu 14 -->
+        <div class="question-card" id="q14_card">
+            <div class="question-title">Câu 14: Thuộc tính nào trong lệnh plt.plot() thiết lập kiểu điểm của dữ liệu hiển thị trong đồ thị?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q14" value="A" onchange="checkAnswer(this)"> A. markersize</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q14" value="B" onchange="checkAnswer(this)"> B. linestyle</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q14" value="C" onchange="checkAnswer(this)"> C. marker</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q14" value="D" onchange="checkAnswer(this)"> D. linewidth</label></div>
+            </div>
+            <div class="feedback" id="q14_feedback"></div>
+        </div>
+
+        <!-- Câu 15 -->
+        <div class="question-card" id="q15_card">
+            <div class="question-title">Câu 15: Đâu là kết quả khi chạy đoạn mã dưới đây?</div>
+            <pre>a = 6
+b = 5
+c = 7
+if (a > b or a > c):
+    print("a la so lon nhat")
+else:
+    print("a khong phai la so lon nhat")</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q15" value="A" onchange="checkAnswer(this)"> A. Python sẽ báo lỗi</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q15" value="B" onchange="checkAnswer(this)"> B. false</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q15" value="C" onchange="checkAnswer(this)"> C. a la so lon nhat</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q15" value="D" onchange="checkAnswer(this)"> D. a khong phai la so lon nhat</label></div>
+            </div>
+            <div class="feedback" id="q15_feedback"></div>
+        </div>
+
+        <!-- Câu 16 -->
+        <div class="question-card" id="q16_card">
+            <div class="question-title">Câu 16: Biến n trong khai báo n = '5' có kiểu dữ liệu?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q16" value="A" onchange="checkAnswer(this)"> A. list</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q16" value="B" onchange="checkAnswer(this)"> B. string</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q16" value="C" onchange="checkAnswer(this)"> C. integer</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q16" value="D" onchange="checkAnswer(this)"> D. float</label></div>
+            </div>
+            <div class="feedback" id="q16_feedback"></div>
+        </div>
+
+        <!-- Câu 17 -->
+        <div class="question-card" id="q17_card">
+            <div class="question-title">Câu 17: Đâu là nhận xét đúng về một biến kiểu DataFrame?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q17" value="A" onchange="checkAnswer(this)"> A. Dữ liệu trên một cột của DataFrame cùng một kiểu dữ liệu</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q17" value="B" onchange="checkAnswer(this)"> B. Dữ liệu trong toàn bộ các hàng và cột của DataFrame phải có cùng kiểu dữ liệu</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q17" value="C" onchange="checkAnswer(this)"> C. Dữ liệu trong một DataFrame không thể bị thiếu</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q17" value="D" onchange="checkAnswer(this)"> D. Tất cả các đáp án đều đúng.</label></div>
+            </div>
+            <div class="feedback" id="q17_feedback"></div>
+        </div>
+
+        <!-- Câu 18 -->
+        <div class="question-card" id="q18_card">
+            <div class="question-title">Câu 18: Cho biết kết quả chạy đoạn lệnh sau với các phép toán trên mảng:</div>
+            <pre>import numpy as np
+ary = np.array([1, 2, 3, 5, 8])
+ary = ary + 1
+print(ary[1])</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q18" value="A" onchange="checkAnswer(this)"> A. 2</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q18" value="B" onchange="checkAnswer(this)"> B. 1</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q18" value="C" onchange="checkAnswer(this)"> C. 3</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q18" value="D" onchange="checkAnswer(this)"> D. 4</label></div>
+            </div>
+            <div class="feedback" id="q18_feedback"></div>
+        </div>
+
+        <!-- Câu 19 -->
+        <div class="question-card" id="q19_card">
+            <div class="question-title">Câu 19: Với một biến data_df có kiểu DataFrame, lệnh data_df.isnull().sum() cho biết?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q19" value="A" onchange="checkAnswer(this)"> A. Tổng giá trị của cột có tên isnull trong biến data_df</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q19" value="B" onchange="checkAnswer(this)"> B. Tính tổng giá trị của tất cả các cột không chứa giá trị NaN (null)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q19" value="C" onchange="checkAnswer(this)"> C. Liệt kê danh sách tên các cột dữ liệu của biến data_df chứa giá trị NaN (null)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q19" value="D" onchange="checkAnswer(this)"> D. Cho biết tổng số giá trị NaN (null) của từng cột dữ liệu trong biến data_df</label></div>
+            </div>
+            <div class="feedback" id="q19_feedback"></div>
+        </div>
+
+        <!-- Câu 20 -->
+        <div class="question-card" id="q20_card">
+            <div class="question-title">Câu 20: Đâu là kết quả của đoạn mã dưới đây?</div>
+            <pre>a = 3
+b = 4
+c = int(a * b)
+print(c)</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q20" value="A" onchange="checkAnswer(this)"> A. c</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q20" value="B" onchange="checkAnswer(this)"> B. 12</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q20" value="C" onchange="checkAnswer(this)"> C. 12.0</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q20" value="D" onchange="checkAnswer(this)"> D. 3 * 4</label></div>
+            </div>
+            <div class="feedback" id="q20_feedback"></div>
+        </div>
+
+        <!-- Câu 21 -->
+        <div class="question-card" id="q21_card">
+            <div class="question-title">Câu 21: Kết quả in ra màn hình của biểu thức sau là gì? print('x' > 'X')</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q21" value="A" onchange="checkAnswer(this)"> A. Không có gì xuất ra màn hình</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q21" value="B" onchange="checkAnswer(this)"> B. True</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q21" value="C" onchange="checkAnswer(this)"> C. False</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q21" value="D" onchange="checkAnswer(this)"> D. Chương trình báo lỗi</label></div>
+            </div>
+            <div class="feedback" id="q21_feedback"></div>
+        </div>
+
+        <!-- Câu 22 -->
+        <div class="question-card" id="q22_card">
+            <div class="question-title">Câu 22: Các ngôn ngữ lập trình thường được sử dụng trong khoa học dữ liệu?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q22" value="A" onchange="checkAnswer(this)"> A. Python, SAS, Matlab</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q22" value="B" onchange="checkAnswer(this)"> B. Python, SAS Miner, NoSQL</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q22" value="C" onchange="checkAnswer(this)"> C. Java, C#, PHP, ASP.NET</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q22" value="D" onchange="checkAnswer(this)"> D. Pig, Spark, Hadoop</label></div>
+            </div>
+            <div class="feedback" id="q22_feedback"></div>
+        </div>
+
+        <!-- Câu 23 -->
+        <div class="question-card" id="q23_card">
+            <div class="question-title">Câu 23: Các giá trị in ra lần lượt của đoạn chương trình bên dưới là gì:</div>
+            <pre>for i in range(3, 7):
+    print(i)</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q23" value="A" onchange="checkAnswer(this)"> A. 3 4 5 6</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q23" value="B" onchange="checkAnswer(this)"> B. 3 4 5 6 7</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q23" value="C" onchange="checkAnswer(this)"> C. 4 5 6</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q23" value="D" onchange="checkAnswer(this)"> D. 4 5 6 7</label></div>
+            </div>
+            <div class="feedback" id="q23_feedback"></div>
+        </div>
+
+        <!-- Câu 24 -->
+        <div class="question-card" id="q24_card">
+            <div class="question-title">Câu 24: Một ma trận vuông A có kích thước (10x10), lệnh A[:,0].max() sẽ hiển thị?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q24" value="A" onchange="checkAnswer(this)"> A. Phần tử lớn nhất của ma trận A</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q24" value="B" onchange="checkAnswer(this)"> B. Phần tử lớn nhất của hàng đầu tiên trong ma trận A</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q24" value="C" onchange="checkAnswer(this)"> C. Phần tử lớn nhất của cột đầu tiên trong ma trận A</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q24" value="D" onchange="checkAnswer(this)"> D. Phần tử lớn nhất của ma trận A trừ cột đầu tiên</label></div>
+            </div>
+            <div class="feedback" id="q24_feedback"></div>
+        </div>
+
+        <!-- Câu 25 -->
+        <div class="question-card" id="q25_card">
+            <div class="question-title">Câu 25: Khoa học dữ liệu là gì?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q25" value="A" onchange="checkAnswer(this)"> A. Phương pháp tự động phân tích và trích xuất thông tin từ khối lượng dữ liệu lớn.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q25" value="B" onchange="checkAnswer(this)"> B. Công cụ mới và hiệu quả trong khám phá thông tin ẩn chứa từ dữ liệu.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q25" value="C" onchange="checkAnswer(this)"> C. Lĩnh vực kết hợp giữa thống kê, toán học, kỹ thuật lập trình, mô phỏng và biểu diễn nhằm chuyển đổi dữ liệu thành thông tin.</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q25" value="D" onchange="checkAnswer(this)"> D. Tất cả các đáp án trên.</label></div>
+            </div>
+            <div class="feedback" id="q25_feedback"></div>
+        </div>
+
+        <!-- Câu 26 -->
+        <div class="question-card" id="q26_card">
+            <div class="question-title">Câu 26: Để vẽ đồ thị dạng đường với nét liền thiết lập thuộc tính linestyle trong lệnh plot() như thế nào là đúng?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q26" value="A" onchange="checkAnswer(this)"> A. linestyle = '-'</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q26" value="B" onchange="checkAnswer(this)"> B. linestyle = '--'</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q26" value="C" onchange="checkAnswer(this)"> C. linestyle = ':'</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q26" value="D" onchange="checkAnswer(this)"> D. linestyle = '-.'</label></div>
+            </div>
+            <div class="feedback" id="q26_feedback"></div>
+        </div>
+
+        <!-- Câu 27 -->
+        <div class="question-card" id="q27_card">
+            <div class="question-title">Câu 27: Để vẽ biểu đồ hình tròn trong thư viện Matplotlib.pyplot sử dụng lệnh nào dưới đây?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q27" value="A" onchange="checkAnswer(this)"> A. plot</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q27" value="B" onchange="checkAnswer(this)"> B. scatter</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q27" value="C" onchange="checkAnswer(this)"> C. bar</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q27" value="D" onchange="checkAnswer(this)"> D. pie</label></div>
+            </div>
+            <div class="feedback" id="q27_feedback"></div>
+        </div>
+
+        <!-- Câu 28 -->
+        <div class="question-card" id="q28_card">
+            <div class="question-title">Câu 28: Đoạn lệnh dưới đây thực hiện nhiệm vụ gì?</div>
+            <pre>import pandas as pd
+df = pd.read_csv('Temp.csv', header=None)</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q28" value="A" onchange="checkAnswer(this)"> A. Đọc dữ liệu trong file Temp.csv vào biến df và đọc dữ liệu không có dòng tiêu đề</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q28" value="B" onchange="checkAnswer(this)"> B. Lưu dữ liệu của biến None vào file Temp.csv</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q28" value="C" onchange="checkAnswer(this)"> C. Đọc dữ liệu lưu trong file Temp.csv vào biến df</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q28" value="D" onchange="checkAnswer(this)"> D. Đọc dữ liệu trong file Temp.csv vào biến header</label></div>
+            </div>
+            <div class="feedback" id="q28_feedback"></div>
+        </div>
+
+        <!-- Câu 29 -->
+        <div class="question-card" id="q29_card">
+            <div class="question-title">Câu 29: Chương trình sau dừng lại khi nào?</div>
+            <pre>i = 10
+s = 0
+while i >= 10:
+    s += 1</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q29" value="A" onchange="checkAnswer(this)"> A. Chương trình báo lỗi Type error</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q29" value="B" onchange="checkAnswer(this)"> B. Chương trình lặp vô hạn lần</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q29" value="C" onchange="checkAnswer(this)"> C. Khi i = 10</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q29" value="D" onchange="checkAnswer(this)"> D. Khi i = 11</label></div>
+            </div>
+            <div class="feedback" id="q29_feedback"></div>
+        </div>
+
+        <!-- Câu 30 -->
+        <div class="question-card" id="q30_card">
+            <div class="question-title">Câu 30: Từ khóa nào được sử dụng để bắt đầu hàm?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q30" value="A" onchange="checkAnswer(this)"> A. def</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q30" value="B" onchange="checkAnswer(this)"> B. function</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q30" value="C" onchange="checkAnswer(this)"> C. fun</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q30" value="D" onchange="checkAnswer(this)"> D. define</label></div>
+            </div>
+            <div class="feedback" id="q30_feedback"></div>
+        </div>
+
+        <!-- Câu 31 -->
+        <div class="question-card" id="q31_card">
+            <div class="question-title">Câu 31: Thư viện nào sau đây chuyên xử lý dữ liệu số (mảng, ma trận nhiều chiều...)?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q31" value="A" onchange="checkAnswer(this)"> A. numpy</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q31" value="B" onchange="checkAnswer(this)"> B. pandas</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q31" value="C" onchange="checkAnswer(this)"> C. sklearn</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q31" value="D" onchange="checkAnswer(this)"> D. matplotlib</label></div>
+            </div>
+            <div class="feedback" id="q31_feedback"></div>
+        </div>
+
+        <!-- Câu 32 -->
+        <div class="question-card" id="q32_card">
+            <div class="question-title">Câu 32: Kết quả của chương trình được in ra màn hình là?</div>
+            <pre>string = "my name is x"
+for i in string:
+    print(i, end=",")</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q32" value="A" onchange="checkAnswer(this)"> A. m,y, ,n,a,m,e, ,i,s, ,x,</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q32" value="B" onchange="checkAnswer(this)"> B. Chương trình báo lỗi</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q32" value="C" onchange="checkAnswer(this)"> C. m , y , , n , a , m , e , , i , s , , x ,</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q32" value="D" onchange="checkAnswer(this)"> D. my, name, is, x,</label></div>
+            </div>
+            <div class="feedback" id="q32_feedback"></div>
+        </div>
+
+        <!-- Câu 33 -->
+        <div class="question-card" id="q33_card">
+            <div class="question-title">Câu 33: Điền phần còn thiếu (...) trong đoạn code để được kết quả như dưới đây?</div>
+            <pre>for i in range(5, 0, ...):
+    print(str(i) * 5)
+
+# Kết quả:
+# 55555
+# 44444
+# 33333
+# 22222
+# 11111</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q33" value="A" onchange="checkAnswer(this)"> A. 1</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q33" value="B" onchange="checkAnswer(this)"> B. -1</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q33" value="C" onchange="checkAnswer(this)"> C. None</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q33" value="D" onchange="checkAnswer(this)"> D. 0</label></div>
+            </div>
+            <div class="feedback" id="q33_feedback"></div>
+        </div>
+
+        <!-- Câu 34 -->
+        <div class="question-card" id="q34_card">
+            <div class="question-title">Câu 34: Hàm print trong đoạn mã dưới đây sẽ in ra kết quả nào?</div>
+            <pre>import numpy as np
+a = np.array([[1, 2, 3, 1],
+              [4, 5, 6, 8]])
+print(a.size)</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q34" value="A" onchange="checkAnswer(this)"> A. 4</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q34" value="B" onchange="checkAnswer(this)"> B. 2</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q34" value="C" onchange="checkAnswer(this)"> C. 6</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q34" value="D" onchange="checkAnswer(this)"> D. 8</label></div>
+            </div>
+            <div class="feedback" id="q34_feedback"></div>
+        </div>
+
+        <!-- Câu 35 -->
+        <div class="question-card" id="q35_card">
+            <div class="question-title">Câu 35: Để vẽ biểu đồ so sánh số lượng sinh viên khoa CNTT theo từng khóa học, loại biểu đồ nào nên được sử dụng?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q35" value="A" onchange="checkAnswer(this)"> A. Biểu đồ điểm (scatter)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q35" value="B" onchange="checkAnswer(this)"> B. Biểu đồ tròn (pie)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q35" value="C" onchange="checkAnswer(this)"> C. Biểu đồ cột/thanh (bar)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q35" value="D" onchange="checkAnswer(this)"> D. Biểu đồ đường (plot)</label></div>
+            </div>
+            <div class="feedback" id="q35_feedback"></div>
+        </div>
+
+        <!-- Câu 36 -->
+        <div class="question-card" id="q36_card">
+            <div class="question-title">Câu 36: Sử dụng thư viện Numpy, để tính giá trị trung bình của các phần tử trong ma trận, hàm nào sau đây là đúng?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q36" value="A" onchange="checkAnswer(this)"> A. sum()</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q36" value="B" onchange="checkAnswer(this)"> B. mean()</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q36" value="C" onchange="checkAnswer(this)"> C. corrcoef()</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q36" value="D" onchange="checkAnswer(this)"> D. median()</label></div>
+            </div>
+            <div class="feedback" id="q36_feedback"></div>
+        </div>
+
+        <!-- Câu 37 -->
+        <div class="question-card" id="q37_card">
+            <div class="question-title">Câu 37: Trong bước Chuẩn bị dữ liệu, nhiệm vụ làm sạch dữ liệu được hiểu là?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q37" value="A" onchange="checkAnswer(this)"> A. Tích hợp dữ liệu</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q37" value="B" onchange="checkAnswer(this)"> B. Chuyển đổi dữ liệu</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q37" value="C" onchange="checkAnswer(this)"> C. Giảm kích thước dữ liệu</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q37" value="D" onchange="checkAnswer(this)"> D. Chỉnh sửa dữ liệu bằng cách bổ sung dữ liệu thiếu, loại bỏ và thay thế dữ liệu nhiễu</label></div>
+            </div>
+            <div class="feedback" id="q37_feedback"></div>
+        </div>
+
+        <!-- Câu 38 -->
+        <div class="question-card" id="q38_card">
+            <div class="question-title">Câu 38: Để thay thế tất cả các dòng dữ liệu NaN (null) của biến data_df có kiểu DataFrame bằng giá trị 5, lệnh nào sau đây là phù hợp?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q38" value="A" onchange="checkAnswer(this)"> A. data_df.dropna(axis=0)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q38" value="B" onchange="checkAnswer(this)"> B. data_df.dropna(axis=1)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q38" value="C" onchange="checkAnswer(this)"> C. data_df.fillna(5)</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q38" value="D" onchange="checkAnswer(this)"> D. data_df.isnull.any(5)</label></div>
+            </div>
+            <div class="feedback" id="q38_feedback"></div>
+        </div>
+
+        <!-- Câu 39 -->
+        <div class="question-card" id="q39_card">
+            <div class="question-title">Câu 39: Đâu là vai trò của việc sử dụng biến số (variable) trong Python?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q39" value="A" onchange="checkAnswer(this)"> A. Biến số giúp việc đọc code dễ hơn</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q39" value="B" onchange="checkAnswer(this)"> B. Tất cả các đáp án</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q39" value="C" onchange="checkAnswer(this)"> C. Biến giúp chúng ta lưu trữ dữ liệu và lấy ra để sử dụng khi cần</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q39" value="D" onchange="checkAnswer(this)"> D. Biến số được sử dụng để lưu thông tin của dữ liệu do người dùng nhập vào</label></div>
+            </div>
+            <div class="feedback" id="q39_feedback"></div>
+        </div>
+
+        <!-- Câu 40 -->
+        <div class="question-card" id="q40_card">
+            <div class="question-title">Câu 40: Cho một biến Danh_sach = [1, 2, 3, 5, 6, 7]. Dùng câu lệnh nào để thay đổi giá trị của phần tử cuối cùng trong biến danh sách thành giá trị 8?
+            <br>(1) Danh_sach[5] = 8 | (2) Danh_sach[-1] = 8 | (3) Danh_sach[len(Danh_sach)-1] = 8</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q40" value="A" onchange="checkAnswer(this)"> A. Danh_sach[5] = 8</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q40" value="B" onchange="checkAnswer(this)"> B. Danh_sach(5) = 8</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q40" value="C" onchange="checkAnswer(this)"> C. Tất cả các đáp án trên</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q40" value="D" onchange="checkAnswer(this)"> D. Danh_sach[-1] = 8</label></div>
+            </div>
+            <div class="feedback" id="q40_feedback"></div>
+        </div>
+
+        <!-- Câu 41 -->
+        <div class="question-card" id="q41_card">
+            <div class="question-title">Câu 41: Năm đặc trưng của Dữ liệu lớn (Big data) bao gồm?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q41" value="A" onchange="checkAnswer(this)"> A. Dung lượng; Tốc độ; Cấu trúc; Độ chính xác; Tương quan</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q41" value="B" onchange="checkAnswer(this)"> B. Dung lượng; Tốc độ; Thể loại; Độ chi tiết; Giá trị</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q41" value="C" onchange="checkAnswer(this)"> C. Khối lượng; Tốc độ; Đa dạng; Độ chính xác; Giá trị</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q41" value="D" onchange="checkAnswer(this)"> D. Khối lượng; Tốc độ; Tương quan; Độ chính xác; Ý nghĩa</label></div>
+            </div>
+            <div class="feedback" id="q41_feedback"></div>
+        </div>
+
+        <!-- Câu 42 -->
+        <div class="question-card" id="q42_card">
+            <div class="question-title">Câu 42: Các kiến thức cần trang bị của một nhà khoa học dữ liệu?</div>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q42" value="A" onchange="checkAnswer(this)"> A. Dữ liệu lớn; Học máy; Trực quan hóa dữ liệu</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q42" value="B" onchange="checkAnswer(this)"> B. Ngôn ngữ và công cụ lập trình</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q42" value="C" onchange="checkAnswer(this)"> C. Tất cả các đáp án</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q42" value="D" onchange="checkAnswer(this)"> D. Cơ sở dữ liệu; Thống kê</label></div>
+            </div>
+            <div class="feedback" id="q42_feedback"></div>
+        </div>
+
+        <!-- Câu 43 -->
+        <div class="question-card" id="q43_card">
+            <div class="question-title">Câu 43: Cho biết kết quả chạy đoạn lệnh sau với các phép toán trên mảng?</div>
+            <pre>import numpy as np
+a = np.array([[0, 1, 2],
+              [3, 4, 5]])
+b = a.sum(axis=1)
+print(b)</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q43" value="A" onchange="checkAnswer(this)"> A. 15</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q43" value="B" onchange="checkAnswer(this)"> B. [3 12]</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q43" value="C" onchange="checkAnswer(this)"> C. 12</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q43" value="D" onchange="checkAnswer(this)"> D. [3 5 7]</label></div>
+            </div>
+            <div class="feedback" id="q43_feedback"></div>
+        </div>
+
+        <!-- Câu 44 -->
+        <div class="question-card" id="q44_card">
+            <div class="question-title">Câu 44: Kết quả xuất ra màn hình của đoạn chương trình sau là gì?</div>
+            <pre>if (9 < 0) and (0 < -9):
+    print('Hello')
+elif (5 > 0) or False:
+    print('Good')
+else:
+    print('Bad')</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q44" value="A" onchange="checkAnswer(this)"> A. error</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q44" value="B" onchange="checkAnswer(this)"> B. Good</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q44" value="C" onchange="checkAnswer(this)"> C. Hello</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q44" value="D" onchange="checkAnswer(this)"> D. Bad</label></div>
+            </div>
+            <div class="feedback" id="q44_feedback"></div>
+        </div>
+
+        <!-- Câu 45 -->
+        <div class="question-card" id="q45_card">
+            <div class="question-title">Câu 45: Đoạn mã dưới đây sẽ thực hiện chức năng gì?</div>
+            <pre>import matplotlib.pyplot as plt
+plt.scatter(size, price)
+plt.show()</pre>
+            <div class="options-list">
+                <div class="option-item"><label class="option-label"><input type="radio" name="q45" value="A" onchange="checkAnswer(this)"> A. Vẽ biểu đồ dạng điểm, với trục x là biến size – trục y là biến price</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q45" value="B" onchange="checkAnswer(this)"> B. Vẽ biểu đồ dạng cột, với trục x là biến size – trục y là biến price</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q45" value="C" onchange="checkAnswer(this)"> C. Vẽ biểu đồ dạng hình tròn với giá trị các phần là biến price, nhãn hiển thị là biến size</label></div>
+                <div class="option-item"><label class="option-label"><input type="radio" name="q45" value="D" onchange="checkAnswer(this)"> D. Vẽ biểu đồ dạng đường đi qua các điểm với trục x là biến size – trục y là biến price</label></div>
+            </div>
+            <div class="feedback" id="q45_feedback"></div>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Đáp án đúng chính xác
+    const correctAnswers = {
+        q1: "A", q2: "D", q3: "A", q4: "D", q5: "C", q6: "B", q7: "B", q8: "B", q9: "C", q10: "D",
+        q11: "D", q12: "D", q13: "D", q14: "C", q15: "C", q16: "B", q17: "A", q18: "C", q19: "D", q20: "B",
+        q21: "B", q22: "A", q23: "A", q24: "C", q25: "D", q26: "A", q27: "D", q28: "A", q29: "B", q30: "A",
+        q31: "A", q32: "A", q33: "B", q34: "D", q35: "C", q36: "B", q37: "D", q38: "C", q39: "B", q40: "C",
+        q41: "C", q42: "C", q43: "B", q44: "B", q45: "A"
+    };
+
+    function checkAnswer(inputElement) {
+        const questionName = inputElement.name; // Tên câu hỏi (vd: q1, q2, ...)
+        const selectedValue = inputElement.value; // Lựa chọn (A, B, C, D)
+        const correctVal = correctAnswers[questionName];
+
+        const card = document.getElementById(`${questionName}_card`);
+        const feedback = document.getElementById(`${questionName}_feedback`);
+        const labels = card.querySelectorAll('.option-label');
+
+        // Reset màu sắc các ô lựa chọn trong câu này
+        labels.forEach(label => {
+            label.classList.remove('correct', 'wrong');
+            const input = label.querySelector('input');
+            
+            // Nếu là ô vừa chọn
+            if (input.value === selectedValue) {
+                if (selectedValue === correctVal) {
+                    label.classList.add('correct');
+                } else {
+                    label.classList.add('wrong');
+                }
+            }
+
+            // Luôn làm nổi bật đáp án đúng
+            if (input.value === correctVal) {
+                label.classList.add('correct');
+            }
+        });
+
+        // Hiển thị khung phản hồi
+        if (selectedValue === correctVal) {
+            feedback.className = "feedback correct";
+            feedback.innerHTML = "✓ Chính xác!";
+        } else {
+            feedback.className = "feedback wrong";
+            feedback.innerHTML = `✗ Chưa chính xác! Đáp án đúng là: ${correctVal}`;
+        }
+    }
+</script>
+
+</body>
+</html>

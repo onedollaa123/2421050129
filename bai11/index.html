@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính điểm chữ</title>
+</head>
+<body>
+    <div>
+        Nhập điểm A: <input id="diemA" type="number">
+    </div>
+
+    <div>
+        Nhập điểm B: <input id="diemB" type="number">
+    </div>
+
+    <div>
+        Nhập điểm C: <input id="diemC" type="number">
+    </div>
+
+    <div>
+        <button onclick="tinhDiemChu()">Tính điểm</button>
+    </div>
+
+    <div>
+        Kết quả: <input id="ketQua" type="text" readonly>
+    </div>
+
+    <script>
+        function tinhDiemChu() {
+            var a = Number(document.getElementById("diemA").value);
+            var b = Number(document.getElementById("diemB").value);
+            var c = Number(document.getElementById("diemC").value);
+
+            var tong = a * 0.6 + b * 0.3 + c * 0.1;
+            var kq;
+
+            if (tong >= 9) {
+                kq = "A+";
+            } else if (tong >= 8.5) {
+                kq = "A";
+            } else if (tong >= 8) {
+                kq = "B+";
+            } else if (tong >= 7) {
+                kq = "B";
+            } else if (tong >= 6.5) {
+                kq = "C+";
+            } else if (tong >= 5.5) {
+                kq = "C";
+            } else if (tong >= 5) {
+                kq = "D+";
+            } else if (tong >= 4) {
+                kq = "D";
+            } else {
+                kq = "F";
+            }
+
+            document.getElementById("ketQua").value =
+                "Điểm: " + tong.toFixed(2) + " - " + kq;
+        }
+    </script>
+    <div>
+        Nhập năm sinh : <input id="namSinh" type="number">
+    </div>
+    <div>
+        <button onclick="tinhTuoi()">Tính tuổi</button>
+    </div>
+
+    <div>
+        Kết quả: <input id="ketQua1" type="text">
+    </div>
+     <script>
+         function tinhTuoi() 
+         {
+            var m = new Date().getFullYear();
+            var n = Number(document.getElementById("namSinh").value);
+            var tuoi = m-n;
+            document.getElementById("ketQua1").value =
+                "Số tuổi: " + tuoi ;
+         }
+     </script>
+</body>
+</html>
