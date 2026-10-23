@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>bai9-js</title>
+
+    <style>
+        .khung {
+            text-align: center;
+
+}
+
+        img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="khung">
+        <h1 class="chedo">Chế độ sáng</h1>
+
+        <img src="../anh/mattroi.png">
+
+        <div class="chucnang">
+            <button onclick="doichedo()">Đổi chế độ</button>
+        </div>
+    </div>
+
+    <script>
+        // nếu để trong hàm thì luôn luôn là chế độ sáng, nó sẽ thay đổi giá trị dc khi ở bên ngoài
+        
+var chedo = true;
+
+function doichedo() {
+    if (chedo == true) {
+        document.getElementsByTagName("body")[0].style = "background-color: black";
+        document.getElementsByTagName("h1")[0].style = "color: white";
+        document.getElementsByClassName("chedo")[0].innerHTML = "Chế độ tối";
+        document.getElementsByTagName("img")[0].src = "../anh/mattrang.png";
+        chedo = false;
+    }
+    else {
+        document.getElementsByTagName("body")[0].style = "background-color: white";
+        document.getElementsByTagName("h1")[0].style = "color: black";
+        document.getElementsByClassName("chedo")[0].innerHTML = "Chế độ sáng";
+        document.getElementsByTagName("img")[0].src = "../anh/mattroi.png";
+        chedo = true;
+    }
+}
+    </script>
+</body>
+</html>
