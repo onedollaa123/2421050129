@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -63,16 +64,35 @@
             border-radius: 5px;
         }
 
+        /* BANNER */
+
         .banner {
             width: 95%;
-    margin: 20px auto;
-    border-radius: 20px;
+            height: 100vh;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .banner-anh,
+        .banner-video {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 20px;
         }
 
         .banner-anh {
-            width: 100%;
-    height: 100vh;
-     border-radius: 20px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .banner-video {
+            display: none;
+            border: none;
         }
 
         .thong-tin-phim {
@@ -80,6 +100,7 @@
             bottom: 25px;
             left: 25px;
             width: 40%;
+            z-index: 2;
         }
 
         .thong-tin-phim h1 {
@@ -108,6 +129,22 @@
             color: white;
         }
 
+        .nut-quay-lai {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+            display: none;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 20px;
+            background: white;
+            color: black;
+            cursor: pointer;
+        }
+
+        /* DANH SÁCH PHIM */
+
         .danh-sach-the-loai {
             width: 96%;
             margin: 20px auto;
@@ -120,28 +157,35 @@
 
         .phim {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             overflow-x: auto;
-            padding: 5px 0 10px;
+            padding: 10px 5px 15px;
         }
 
         .phim a {
-            flex: 0 0 16%;
+            flex: 0 0 19%;
             min-width: 0;
             cursor: pointer;
+            display: block;
+            border-radius: 8px;
         }
 
         .phim-poster {
             display: block;
             width: 100%;
-            height: 120px;
+            aspect-ratio: 16 / 9;
+            height: auto;
             object-fit: cover;
+            object-position: center;
             border-radius: 8px;
+            transition: transform 0.3s;
         }
 
         .phim a:hover .phim-poster {
             transform: scale(1.05);
         }
+
+        /* NHÂN VẬT */
 
         .danh-sach-nhan-vat {
             display: flex;
@@ -178,19 +222,19 @@
                 </li>
 
                 <li class="muc">
-                    <a class="lien-ket-muc" href="#">Nhân vật</a>
+                    <a class="lien-ket-muc" href="#nhan-vat">Nhân vật</a>
                 </li>
 
                 <li class="muc">
-                    <a class="lien-ket-muc" href="#">Series</a>
+                    <a class="lien-ket-muc" href="#series">Series</a>
                 </li>
 
                 <li class="muc">
-                    <a class="lien-ket-muc" href="#">Phim</a>
+                    <a class="lien-ket-muc" href="#phim">Phim</a>
                 </li>
 
                 <li class="muc">
-                    <a class="lien-ket-muc" href="#">Mới & Phổ biến</a>
+                    <a class="lien-ket-muc" href="#moi-pho-bien">Mới & Phổ biến</a>
                 </li>
 
                 <li class="muc">
@@ -207,11 +251,33 @@
 
     <main>
 
-       
+        <!-- BANNER -->
+
         <div class="banner">
-            <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;">
-                    <img class="banner-anh" src="../anh/banner.jpg" alt="Banner">
-                </a>
+
+            <img
+                id="bannerImage"
+                class="banner-anh"
+                src="../anh/banner.jpg"
+                alt="Banner"
+                onclick="xemPhim('YmiU8DkUb3I')"
+            >
+
+            <iframe
+                id="trailerFrame"
+                class="banner-video"
+                src=""
+                title="Video phim"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+
+            <button
+                id="nutQuayLai"
+                class="nut-quay-lai"
+                onclick="quayLaiBanner()">
+                ← Quay lại
+            </button>
 
             <div class="thong-tin-phim">
                 <h1>LABRADOR</h1>
@@ -224,133 +290,140 @@
                 </p>
 
                 <div class="nut-phim">
-                    <button class="nut-phat"
+                    <button
+                        class="nut-phat"
                         onclick="xemPhim('YmiU8DkUb3I')">
                         ▶ Phát
                     </button>
 
-                    <button class="nut-thong-tin"
+                    <button
+                        class="nut-thong-tin"
                         onclick="alert('Series Labrador')">
                         ⓘ Thông tin khác
                     </button>
                 </div>
             </div>
+
         </div>
-        <div class="banner">
-            <iframe class="banner-anh" src="https://www.youtube.com/embed/vKuHQRTS20U?list=RDvKuHQRTS20U" title="NGÔI NHÀ HẠNH PHÚC - NHẬT PHÁT live at #Lululola" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</iframe>
-        </div>
+
+        <!-- DANH SÁCH PHIM -->
 
         <div class="danh-sach-the-loai">
-
 
             <div class="ten-the-loai">
                 <h2>Có thể bạn chưa xem</h2>
             </div>
 
             <div class="phim">
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;">
+
+                <a href="#" onclick="xemPhim('_inKs4eeHiI'); return false;">
                     <img src="../anh/a1.jpeg" class="phim-poster">
                 </a>
 
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;">
+                <a href="#" onclick="xemPhim('2Ox6aYmhxvw'); return false;">
                     <img src="../anh/a2.jpeg" class="phim-poster">
                 </a>
 
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;">
+                <a href="#" onclick="xemPhim('M7aV9OE5JiY'); return false;">
                     <img src="../anh/a3.jpeg" class="phim-poster">
                 </a>
 
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;">
+                <a href="#" onclick="xemPhim('c51ND9Hdbw0'); return false;">
                     <img src="../anh/a4.jpeg" class="phim-poster">
                 </a>
 
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;">
+                <a href="#" onclick="xemPhim('c51ND9Hdbw0'); return false;">
                     <img src="../anh/a4.jpeg" class="phim-poster">
                 </a>
 
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;">
+                <a href="#" onclick="xemPhim('c51ND9Hdbw0'); return false;">
                     <img src="../anh/a4.jpeg" class="phim-poster">
                 </a>
 
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;">
+                <a href="#" onclick="xemPhim('c51ND9Hdbw0'); return false;">
                     <img src="../anh/a4.jpeg" class="phim-poster">
                 </a>
+
             </div>
 
-        
             <div class="ten-the-loai">
                 <h2>Phim hài hước</h2>
             </div>
 
             <div class="phim">
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/b1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/b2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/b3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/b4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/b5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/b6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/b6.jpeg" class="phim-poster"></a>
+
+                <a href="#" onclick="xemPhim('dwfUi9SV5ss'); return false;"><img src="../anh/b1.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('IQZt7ElxH44'); return false;"><img src="../anh/b2.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('zKMOgOWn8lQ'); return false;"><img src="../anh/b3.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('MtZ_hf7tLxk'); return false;"><img src="../anh/b4.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('BChZi-2QAt4'); return false;"><img src="../anh/b5.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('l9Hu3Xocc-g'); return false;"><img src="../anh/b6.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('l9Hu3Xocc-g'); return false;"><img src="../anh/b6.jpeg" class="phim-poster"></a>
+
             </div>
 
-     
             <div class="ten-the-loai">
                 <h2>Hoạt hình</h2>
             </div>
 
             <div class="phim">
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/c1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/c2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/c3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/c4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/c5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/c6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/c6.jpeg" class="phim-poster"></a>
-            </div>
 
+                <a href="#" onclick="xemPhim('x7uLutVRBfI'); return false;"><img src="../anh/c1.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('MPfZhgLiK6w'); return false;"><img src="../anh/c2.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('_inKs4eeHiI'); return false;"><img src="../anh/c3.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('CFgEL7ei8VE'); return false;"><img src="../anh/c4.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('TRr_dS2REo4'); return false;"><img src="../anh/c5.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('ARCQf2CEr8k'); return false;"><img src="../anh/c6.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('ARCQf2CEr8k'); return false;"><img src="../anh/c6.jpeg" class="phim-poster"></a>
+
+            </div>
 
             <div class="ten-the-loai" id="series">
                 <h2>Mọi người đang xem</h2>
             </div>
 
             <div class="phim">
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d7.jpeg" class="phim-poster"></a>
-            </div>
 
+                <a href="#" onclick="xemPhim('lV1OOlGwExM'); return false;"><img src="../anh/d1.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('TEHWDA_6e3M'); return false;"><img src="../anh/d2.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('KrGyD4kHTSE'); return false;"><img src="../anh/d3.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('M7aV9OE5JiY'); return false;"><img src="../anh/d4.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('6kw1UVovByw'); return false;"><img src="../anh/d5.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('Ca3D2y76MBg'); return false;"><img src="../anh/d6.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d7.jpeg" class="phim-poster"></a>
+
+            </div>
 
             <div class="ten-the-loai" id="phim">
                 <h2>Top 10 phim Việt Nam hôm nay</h2>
             </div>
 
             <div class="phim">
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/f1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/f2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/f3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/f4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/f5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/f6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/f7.jpeg" class="phim-poster"></a>
-            </div>
 
+                <a href="#" onclick="xemPhim('BD6PoZJdt_M'); return false;"><img src="../anh/f1.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('IosqnBOkk2I'); return false;"><img src="../anh/f2.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('IkaP0KJWTsQ'); return false;"><img src="../anh/f3.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('IosqnBOkk2I'); return false;"><img src="../anh/f4.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('IosqnBOkk2I'); return false;"><img src="../anh/f5.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('JpQk8f572pY'); return false;"><img src="../anh/f6.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('qW1YlO3B6Yw'); return false;"><img src="../anh/f7.jpeg" class="phim-poster"></a>
+
+            </div>
 
             <div class="ten-the-loai" id="moi-pho-bien">
                 <h2>Giáo dục và giải trí</h2>
             </div>
 
             <div class="phim">
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/g1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/g2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/g3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/g4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/g5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/g6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/g7.jpeg" class="phim-poster"></a>
+
+                <a href="#" onclick="xemPhim('qjm1LgM2El4'); return false;"><img src="../anh/g1.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('qjm1LgM2El4'); return false;"><img src="../anh/g2.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('tIqm5ByKnWQ'); return false;"><img src="../anh/g3.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('YPvmab5K0LQ'); return false;"><img src="../anh/g4.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('BLCw92vbFto'); return false;"><img src="../anh/g5.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('9ZlkNvuKTZU'); return false;"><img src="../anh/g6.jpeg" class="phim-poster"></a>
+                <a href="#" onclick="xemPhim('qjm1LgM2El4'); return false;"><img src="../anh/g7.jpeg" class="phim-poster"></a>
+
             </div>
 
             <div class="ten-the-loai" id="nhan-vat">
@@ -358,6 +431,7 @@
             </div>
 
             <div class="danh-sach-nhan-vat">
+
                 <div class="nhan-vat"><img src="../anh/q1.jpeg"></div>
                 <div class="nhan-vat"><img src="../anh/q2.jpeg"></div>
                 <div class="nhan-vat"><img src="../anh/q3.jpeg"></div>
@@ -366,15 +440,37 @@
                 <div class="nhan-vat"><img src="../anh/q6.jpeg"></div>
                 <div class="nhan-vat"><img src="../anh/q7.jpeg"></div>
                 <div class="nhan-vat"><img src="../anh/q8.jpeg"></div>
+
             </div>
 
         </div>
+
     </main>
 
     <script>
+        var bannerImage = document.getElementById("bannerImage");
+        var trailerFrame = document.getElementById("trailerFrame");
+        var thongTinPhim = document.getElementsByClassName("thong-tin-phim")[0];
+        var nutQuayLai = document.getElementById("nutQuayLai");
+
         function xemPhim(maVideo) {
-            var src = "https://www.youtube.com/embed/" + maVideo;
-            window.open(src, "_blank");
+            var src = "https://www.youtube.com/embed/" + maVideo + "?autoplay=1";
+
+            bannerImage.style.display = "none";
+            trailerFrame.style.display = "block";
+            thongTinPhim.style.display = "none";
+            nutQuayLai.style.display = "block";
+
+            trailerFrame.src = src;
+        }
+
+        function quayLaiBanner() {
+            trailerFrame.src = "";
+            trailerFrame.style.display = "none";
+
+            bannerImage.style.display = "block";
+            thongTinPhim.style.display = "block";
+            nutQuayLai.style.display = "none";
         }
     </script>
 

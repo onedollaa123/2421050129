@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test khung</title>
+
+    <style>
+        .video {
+            display: block;
+            width: 50%;
+            height: 500px;
+            margin: 0 auto;
+        }
+
+        .ten {
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .danh-sach {
+            width: 80%;
+            display: flex;
+            margin: 50px auto;
+            justify-content: space-between;
+        }
+
+        .anh {
+            width: 24%;
+            height: 250px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .anh img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <iframe
+        class="video"
+        id="video"
+        src="https://www.youtube.com/embed/YHbkTX-VFro"
+        title="YouTube video player"
+        frameborder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+
+    <p class="ten">Tên bài hát</p>
+
+    <div class="danh-sach">
+
+        <div class="anh" onclick="chonVid(1)">
+            <img src="../anh/q6.jpeg" alt="">
+        </div>
+
+        <div class="anh" onclick="chonVid(2)">
+            <img src="../anh/q7.jpeg" alt="">
+        </div>
+
+        <div class="anh" onclick="chonVid(3)">
+            <img src="../anh/q8.jpeg" alt="">
+        </div>
+
+        <div class="anh" onclick="chonVid(4)">
+            <img src="../anh/q9.jpeg" alt="">
+        </div>
+
+    </div>
+
+    <script>
+        var danhSachVideo = [
+            {
+                id: 1,
+                ten: "Thành đô",
+                duongDanAnh: "../anh/q6.jpeg",
+                duongDanYT: "https://www.youtube.com/embed/ab4FN-zmagw"
+            },
+            {
+                id: 2,
+                ten: "Ngày mình chia tay",
+                duongDanAnh: "../anh/q7.jpeg",
+                duongDanYT: "https://www.youtube.com/embed/YHbkTX-VFro"
+            },
+            {
+                id: 3,
+                ten: "Đến khi nào",
+                duongDanAnh: "../anh/q8.jpeg",
+                duongDanYT: "https://www.youtube.com/embed/YrMNbdtVuhU"
+            },
+            {
+                id: 4,
+                ten: "Giá như anh là người vô tâm",
+                duongDanAnh: "../anh/q9.jpeg",
+                duongDanYT: "https://www.youtube.com/embed/DBWkxJt9HSo"
+            }
+        ];
+
+        function chonVid(id) {
+            for (var i = 0; i < danhSachVideo.length; i++) {
+
+                if (danhSachVideo[i].id == id) {
+
+                    document.getElementById("video").src =
+                        danhSachVideo[i].duongDanYT;
+
+                    document.getElementsByClassName("ten")[0].innerHTML =
+                        danhSachVideo[i].ten;
+
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
