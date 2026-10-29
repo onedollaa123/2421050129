@@ -1,14 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix</title>
+    <title>Netflix Clone</title>
 
     <style>
         * {
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -26,6 +29,10 @@
         header {
             justify-content: space-between;
             padding: 10px 3%;
+            position: sticky;
+            top: 0;
+            background-color: rgba(20, 20, 20, 0.95);
+            z-index: 100;
         }
 
         .danh-sach-muc {
@@ -37,42 +44,52 @@
 
         .logo {
             width: 65px;
+            margin-right: 15px;
         }
 
         .muc {
-            padding: 10px;
+            padding: 8px 14px;
             border-radius: 20px;
+            transition: background 0.2s;
         }
 
         .lien-ket-muc {
             color: #dbdbdd;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .muc:hover, .dang-chon {
             background: #4e4b52;
         }
 
+        .muc:hover .lien-ket-muc {
+            color: #ffffff;
+        }
+
         .chuc-nang {
             gap: 15px;
+            font-size: 18px;
+            cursor: pointer;
         }
 
         .avata {
-            width: 30px;
-            height: 30px;
-            border-radius: 5px;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            object-fit: cover;
         }
 
         /* BANNER */
 
         .banner {
             width: 95%;
-            height: 100vh;
+            height: 80vh;
             margin: 20px auto;
             position: relative;
             overflow: hidden;
-            border-radius: 20px;
+            border-radius: 16px;
+            background: #000;
         }
 
         .banner-anh,
@@ -82,7 +99,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            border-radius: 20px;
+            border-radius: 16px;
         }
 
         .banner-anh {
@@ -97,26 +114,41 @@
 
         .thong-tin-phim {
             position: absolute;
-            bottom: 25px;
-            left: 25px;
-            width: 40%;
+            bottom: 30px;
+            left: 30px;
+            width: 45%;
             z-index: 2;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
 
         .thong-tin-phim h1 {
-            font-size: 40px;
+            font-size: 38px;
+            margin: 0 0 10px 0;
         }
 
         .mo-ta {
             font-size: 14px;
             line-height: 1.5;
+            color: #e5e5e5;
+        }
+
+        .nut-phim {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
         }
 
         .nut-phim button {
-            padding: 10px 18px;
+            padding: 10px 22px;
             border: none;
             border-radius: 20px;
+            font-weight: bold;
             cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .nut-phim button:hover {
+            opacity: 0.85;
         }
 
         .nut-phat {
@@ -125,7 +157,7 @@
         }
 
         .nut-thong-tin {
-            background: #555;
+            background: rgba(109, 109, 110, 0.7);
             color: white;
         }
 
@@ -135,24 +167,25 @@
             left: 20px;
             z-index: 3;
             display: none;
-            padding: 10px 18px;
+            padding: 10px 20px;
             border: none;
             border-radius: 20px;
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             color: black;
+            font-weight: bold;
             cursor: pointer;
         }
 
         /* DANH SÁCH PHIM */
 
         .danh-sach-the-loai {
-            width: 96%;
+            width: 95%;
             margin: 20px auto;
         }
 
         .ten-the-loai h2 {
-            font-size: 20px;
-            margin: 25px 0 10px;
+            font-size: 22px;
+            margin: 30px 0 12px;
         }
 
         .phim {
@@ -160,50 +193,64 @@
             gap: 15px;
             overflow-x: auto;
             padding: 10px 5px 15px;
+            scroll-behavior: smooth;
         }
 
-        .phim a {
-            flex: 0 0 19%;
-            min-width: 0;
+        /* Tùy chỉnh thanh cuộn cho đẹp */
+        .phim::-webkit-scrollbar {
+            height: 6px;
+        }
+        .phim::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 10px;
+        }
+
+        .phim-item {
+            flex: 0 0 calc(20% - 12px);
+            min-width: 180px;
             cursor: pointer;
-            display: block;
             border-radius: 8px;
+            text-decoration: none;
         }
 
         .phim-poster {
             display: block;
             width: 100%;
             aspect-ratio: 16 / 9;
-            height: auto;
             object-fit: cover;
-            object-position: center;
             border-radius: 8px;
-            transition: transform 0.3s;
+            transition: transform 0.3s ease;
         }
 
-        .phim a:hover .phim-poster {
-            transform: scale(1.05);
+        .phim-item:hover .phim-poster {
+            transform: scale(1.06);
         }
 
         /* NHÂN VẬT */
 
         .danh-sach-nhan-vat {
             display: flex;
-            justify-content: space-between;
-            gap: 10px;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
         }
 
         .nhan-vat {
-            flex: 1;
-            min-width: 0;
+            flex: 0 0 auto;
+            text-align: center;
         }
 
         .nhan-vat img {
-            width: 100%;
-            max-width: 130px;
-            aspect-ratio: 1;
+            width: 110px;
+            height: 110px;
             object-fit: cover;
             border-radius: 50%;
+            border: 2px solid #333;
+            transition: border-color 0.3s;
+        }
+
+        .nhan-vat img:hover {
+            border-color: #e50914;
         }
     </style>
 </head>
@@ -216,29 +263,20 @@
                 <li>
                     <img class="logo" src="../anh/logo.svg" alt="Netflix">
                 </li>
-
                 <li class="muc dang-chon">
                     <a class="lien-ket-muc" href="#">Trang chủ</a>
                 </li>
-
                 <li class="muc">
                     <a class="lien-ket-muc" href="#nhan-vat">Nhân vật</a>
                 </li>
-
                 <li class="muc">
                     <a class="lien-ket-muc" href="#series">Series</a>
                 </li>
-
                 <li class="muc">
                     <a class="lien-ket-muc" href="#phim">Phim</a>
                 </li>
-
                 <li class="muc">
                     <a class="lien-ket-muc" href="#moi-pho-bien">Mới & Phổ biến</a>
-                </li>
-
-                <li class="muc">
-                    <a class="lien-ket-muc" href="#">Netflix của tôi</a>
                 </li>
             </ul>
         </nav>
@@ -253,7 +291,7 @@
 
         <!-- BANNER -->
 
-        <div class="banner">
+        <div class="banner" id="bannerSection">
 
             <img
                 id="bannerImage"
@@ -281,24 +319,17 @@
 
             <div class="thong-tin-phim">
                 <h1>LABRADOR</h1>
-
                 <p>Series · Trẻ em · 2026 · 2 mùa</p>
-
                 <p class="mo-ta">
                     Cảnh sát trưởng Labrador cùng trợ thủ phá án
                     và chia sẻ những mẹo an toàn hữu ích.
                 </p>
 
                 <div class="nut-phim">
-                    <button
-                        class="nut-phat"
-                        onclick="xemPhim('YmiU8DkUb3I')">
+                    <button class="nut-phat" onclick="xemPhim('YmiU8DkUb3I')">
                         ▶ Phát
                     </button>
-
-                    <button
-                        class="nut-thong-tin"
-                        onclick="alert('Series Labrador')">
+                    <button class="nut-thong-tin" onclick="alert('Series Labrador')">
                         ⓘ Thông tin khác
                     </button>
                 </div>
@@ -306,148 +337,112 @@
 
         </div>
 
-        <!-- DANH SÁCH PHIM -->
+        <!-- DANH SÁCH PHIM (RENDER ĐỘNG TỪ JS) -->
 
-        <div class="danh-sach-the-loai">
+        <div class="danh-sach-the-loai" id="containerPhim"></div>
 
+        <!-- NHÂN VẬT -->
+
+        <div class="danh-sach-the-loai" id="nhan-vat">
             <div class="ten-the-loai">
-                <h2>Có thể bạn chưa xem</h2>
+                <h2>Nhân vật nổi bật</h2>
             </div>
-
-            <div class="phim">
-
-                <a href="#" onclick="xemPhim('_inKs4eeHiI'); return false;">
-                    <img src="../anh/a1.jpeg" class="phim-poster">
-                </a>
-
-                <a href="#" onclick="xemPhim('2Ox6aYmhxvw'); return false;">
-                    <img src="../anh/a2.jpeg" class="phim-poster">
-                </a>
-
-                <a href="#" onclick="xemPhim('M7aV9OE5JiY'); return false;">
-                    <img src="../anh/a3.jpeg" class="phim-poster">
-                </a>
-
-                <a href="#" onclick="xemPhim('c51ND9Hdbw0'); return false;">
-                    <img src="../anh/a4.jpeg" class="phim-poster">
-                </a>
-
-                <a href="#" onclick="xemPhim('c51ND9Hdbw0'); return false;">
-                    <img src="../anh/a4.jpeg" class="phim-poster">
-                </a>
-
-                <a href="#" onclick="xemPhim('c51ND9Hdbw0'); return false;">
-                    <img src="../anh/a4.jpeg" class="phim-poster">
-                </a>
-
-                <a href="#" onclick="xemPhim('c51ND9Hdbw0'); return false;">
-                    <img src="../anh/a4.jpeg" class="phim-poster">
-                </a>
-
-            </div>
-
-            <div class="ten-the-loai">
-                <h2>Phim hài hước</h2>
-            </div>
-
-            <div class="phim">
-
-                <a href="#" onclick="xemPhim('dwfUi9SV5ss'); return false;"><img src="../anh/b1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('IQZt7ElxH44'); return false;"><img src="../anh/b2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('zKMOgOWn8lQ'); return false;"><img src="../anh/b3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('MtZ_hf7tLxk'); return false;"><img src="../anh/b4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('BChZi-2QAt4'); return false;"><img src="../anh/b5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('l9Hu3Xocc-g'); return false;"><img src="../anh/b6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('l9Hu3Xocc-g'); return false;"><img src="../anh/b6.jpeg" class="phim-poster"></a>
-
-            </div>
-
-            <div class="ten-the-loai">
-                <h2>Hoạt hình</h2>
-            </div>
-
-            <div class="phim">
-
-                <a href="#" onclick="xemPhim('x7uLutVRBfI'); return false;"><img src="../anh/c1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('MPfZhgLiK6w'); return false;"><img src="../anh/c2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('_inKs4eeHiI'); return false;"><img src="../anh/c3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('CFgEL7ei8VE'); return false;"><img src="../anh/c4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('TRr_dS2REo4'); return false;"><img src="../anh/c5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('ARCQf2CEr8k'); return false;"><img src="../anh/c6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('ARCQf2CEr8k'); return false;"><img src="../anh/c6.jpeg" class="phim-poster"></a>
-
-            </div>
-
-            <div class="ten-the-loai" id="series">
-                <h2>Mọi người đang xem</h2>
-            </div>
-
-            <div class="phim">
-
-                <a href="#" onclick="xemPhim('lV1OOlGwExM'); return false;"><img src="../anh/d1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('TEHWDA_6e3M'); return false;"><img src="../anh/d2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('KrGyD4kHTSE'); return false;"><img src="../anh/d3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('M7aV9OE5JiY'); return false;"><img src="../anh/d4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('6kw1UVovByw'); return false;"><img src="../anh/d5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('Ca3D2y76MBg'); return false;"><img src="../anh/d6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YmiU8DkUb3I'); return false;"><img src="../anh/d7.jpeg" class="phim-poster"></a>
-
-            </div>
-
-            <div class="ten-the-loai" id="phim">
-                <h2>Top 10 phim Việt Nam hôm nay</h2>
-            </div>
-
-            <div class="phim">
-
-                <a href="#" onclick="xemPhim('BD6PoZJdt_M'); return false;"><img src="../anh/f1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('IosqnBOkk2I'); return false;"><img src="../anh/f2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('IkaP0KJWTsQ'); return false;"><img src="../anh/f3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('IosqnBOkk2I'); return false;"><img src="../anh/f4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('IosqnBOkk2I'); return false;"><img src="../anh/f5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('JpQk8f572pY'); return false;"><img src="../anh/f6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('qW1YlO3B6Yw'); return false;"><img src="../anh/f7.jpeg" class="phim-poster"></a>
-
-            </div>
-
-            <div class="ten-the-loai" id="moi-pho-bien">
-                <h2>Giáo dục và giải trí</h2>
-            </div>
-
-            <div class="phim">
-
-                <a href="#" onclick="xemPhim('qjm1LgM2El4'); return false;"><img src="../anh/g1.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('qjm1LgM2El4'); return false;"><img src="../anh/g2.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('tIqm5ByKnWQ'); return false;"><img src="../anh/g3.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('YPvmab5K0LQ'); return false;"><img src="../anh/g4.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('BLCw92vbFto'); return false;"><img src="../anh/g5.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('9ZlkNvuKTZU'); return false;"><img src="../anh/g6.jpeg" class="phim-poster"></a>
-                <a href="#" onclick="xemPhim('qjm1LgM2El4'); return false;"><img src="../anh/g7.jpeg" class="phim-poster"></a>
-
-            </div>
-
-            <div class="ten-the-loai" id="nhan-vat">
-                <h2>Nhân vật</h2>
-            </div>
-
-            <div class="danh-sach-nhan-vat">
-
-                <div class="nhan-vat"><img src="../anh/q1.jpeg"></div>
-                <div class="nhan-vat"><img src="../anh/q2.jpeg"></div>
-                <div class="nhan-vat"><img src="../anh/q3.jpeg"></div>
-                <div class="nhan-vat"><img src="../anh/q4.jpeg"></div>
-                <div class="nhan-vat"><img src="../anh/q5.jpeg"></div>
-                <div class="nhan-vat"><img src="../anh/q6.jpeg"></div>
-                <div class="nhan-vat"><img src="../anh/q7.jpeg"></div>
-                <div class="nhan-vat"><img src="../anh/q8.jpeg"></div>
-
-            </div>
-
+            <div class="danh-sach-nhan-vat" id="containerNhanVat"></div>
         </div>
 
     </main>
 
     <script>
+        var danhSachTheLoai = [
+            {
+                idAnchor: "",
+                tieuDe: "Có thể bạn chưa xem",
+                danhSachPhim: [
+                    { maYT: "_inKs4eeHiI", anh: "../anh/a1.jpeg" },
+                    { maYT: "2Ox6aYmhxvw", anh: "../anh/a2.jpeg" },
+                    { maYT: "M7aV9OE5JiY", anh: "../anh/a3.jpeg" },
+                    { maYT: "c51ND9Hdbw0", anh: "../anh/a4.jpeg" },
+                    { maYT: "c51ND9Hdbw0", anh: "../anh/a4.jpeg" }
+                ]
+            },
+            {
+                idAnchor: "series",
+                tieuDe: "Phim hài hước & Series",
+                danhSachPhim: [
+                    { maYT: "dwfUi9SV5ss", anh: "../anh/b1.jpeg" },
+                    { maYT: "IQZt7ElxH44", anh: "../anh/b2.jpeg" },
+                    { maYT: "zKMOgOWn8lQ", anh: "../anh/b3.jpeg" },
+                    { maYT: "MtZ_hf7tLxk", anh: "../anh/b4.jpeg" },
+                    { maYT: "BChZi-2QAt4", anh: "../anh/b5.jpeg" }
+                ]
+            },
+            {
+                idAnchor: "phim",
+                tieuDe: "Top 10 Phim chiếu rảnh",
+                danhSachPhim: [
+                    { maYT: "BD6PoZJdt_M", anh: "../anh/f1.jpeg" },
+                    { maYT: "IosqnBOkk2I", anh: "../anh/f2.jpeg" },
+                    { maYT: "IkaP0KJWTsQ", anh: "../anh/f3.jpeg" },
+                    { maYT: "JpQk8f572pY", anh: "../anh/f6.jpeg" },
+                    { maYT: "qW1YlO3B6Yw", anh: "../anh/f7.jpeg" }
+                ]
+            },
+            {
+                idAnchor: "moi-pho-bien",
+                tieuDe: "Mới & Phổ biến",
+                danhSachPhim: [
+                    { maYT: "qjm1LgM2El4", anh: "../anh/g1.jpeg" },
+                    { maYT: "tIqm5ByKnWQ", anh: "../anh/g3.jpeg" },
+                    { maYT: "YPvmab5K0LQ", anh: "../anh/g4.jpeg" },
+                    { maYT: "BLCw92vbFto", anh: "../anh/g5.jpeg" },
+                    { maYT: "9ZlkNvuKTZU", anh: "../anh/g6.jpeg" }
+                    
+                ]
+            }
+        ];
+
+        var danhSachNhanVat = [
+            "../anh/q1.jpeg", "../anh/q2.jpeg", "../anh/q3.jpeg", 
+            "../anh/q4.jpeg", "../anh/q5.jpeg", "../anh/q6.jpeg"
+        ];
+
+        // 2. HÀM RENDER DỮ LIỆU RA GIAO DIỆN
+        function renderGiaoDien() {
+            var htmlPhim = "";
+
+            for (var i = 0; i < danhSachTheLoai.length; i++) {
+                var theLoai = danhSachTheLoai[i];
+                var anchorAttr = theLoai.idAnchor ? 'id="' + theLoai.idAnchor + '"' : '';
+
+                htmlPhim += '<div class="ten-the-loai" ' + anchorAttr + '>';
+                htmlPhim += '  <h2>' + theLoai.tieuDe + '</h2>';
+                htmlPhim += '</div>';
+                htmlPhim += '<div class="phim">';
+
+                for (var j = 0; j < theLoai.danhSachPhim.length; j++) {
+                    var phim = theLoai.danhSachPhim[j];
+                    htmlPhim += '<a class="phim-item" onclick="xemPhim(\'' + phim.maYT + '\')">';
+                    htmlPhim += '  <img src="' + phim.anh + '" class="phim-poster" alt="Poster">';
+                    htmlPhim += '</a>';
+                }
+
+                htmlPhim += '</div>';
+            }
+
+            document.getElementById("containerPhim").innerHTML = htmlPhim;
+
+            // Render nhân vật
+            var htmlNhanVat = "";
+            for (var k = 0; k < danhSachNhanVat.length; k++) {
+                htmlNhanVat += '<div class="nhan-vat"><img src="' + danhSachNhanVat[k] + '"></div>';
+            }
+            document.getElementById("containerNhanVat").innerHTML = htmlNhanVat;
+        }
+
+        // Chạy hàm render ngay khi trang tải xong
+        renderGiaoDien();
+
+        // 3. LOGIC ĐIỀU KHIỂN VIDEO BANNER
         var bannerImage = document.getElementById("bannerImage");
         var trailerFrame = document.getElementById("trailerFrame");
         var thongTinPhim = document.getElementsByClassName("thong-tin-phim")[0];
@@ -462,6 +457,9 @@
             nutQuayLai.style.display = "block";
 
             trailerFrame.src = src;
+
+            // Cuộn mượt lên vị trí Banner để người dùng xem video
+            document.getElementById("bannerSection").scrollIntoView({ behavior: 'smooth' });
         }
 
         function quayLaiBanner() {
